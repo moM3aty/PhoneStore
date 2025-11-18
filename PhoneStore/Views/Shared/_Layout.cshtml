@@ -1,0 +1,137 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using PhoneStore.Extensions
+@using System.Text.Json
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - متجر أشرف الخوالدة</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/main.css">
+    <style>
+        #toast-container {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            z-index: 9999;
+        }
+
+        .icon-wrapper .btn {
+            position: relative;
+        }
+
+        .badge-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #dc3545;
+            color: #fff;
+            border-radius: 50%;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            line-height: 1;
+            border: 2px solid #fff;
+        }
+    </style>
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+
+<body>
+    @Html.AntiForgeryToken()
+
+    <header id="header" class="header fixed-top">
+        <nav class="navbar navbar-expand-lg px-3">
+            <div class="container-fluid container-lg">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <span class="brand-text-accent">اشرف الخوالدة</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto d-flex gap-3 gap-lg-2 mt-3 mt-lg-0 py-3">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="home">الرئيسية</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="mobileCompany">شركة الموبايلات</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Store" asp-action="Index">المتجر</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="whyUs">لماذا نحن</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="contact">اتصل بنا</a></li>
+                    </ul>
+                    <div class="px-lg-4">
+                        <div class="icon-wrapper d-flex gap-4 py-3 py-lg-0 justify-content-center justify-content-lg-start">
+                            @{
+                                // استخدام PhoneStore.Models.CartItem بدلاً من PhoneStore.Controllers.CartItem
+                                var cart = HttpContextAccessor.HttpContext.Session.GetObject<List<PhoneStore.Models.CartItem>>("_Cart") ?? new List<PhoneStore.Models.CartItem>();
+                                var cartCount = cart.Sum(c => c.Quantity);
+
+                                var wishlistCookie = HttpContextAccessor.HttpContext.Request.Cookies["PhoneStore_Wishlist"];
+                                var wishlistCount = 0;
+                                if (!string.IsNullOrEmpty(wishlistCookie))
+                                {
+                                    try { wishlistCount = (JsonSerializer.Deserialize<List<int>>(wishlistCookie) ?? new List<int>()).Count; } catch { }
+                                }
+                            }
+
+                            <div>
+                                <a asp-controller="Cart" asp-action="Wishlist" class="btn btn-danger btn-lg" id="wishlist-link">
+                                    <i class="fa-regular fa-heart fa-lg" title="Wishlist"></i>
+                                    <span class="badge-count @(wishlistCount > 0 ? "" : "d-none")">@wishlistCount</span>
+                                </a>
+                            </div>
+                            <div>
+                                <a asp-controller="Cart" asp-action="Index" class="btn btn-danger btn-lg position-relative" id="cart-link">
+                                    <i class="fa-solid fa-cart-shopping fa-lg" title="Cart"></i>
+                                    <span class="badge-count @(cartCount > 0 ? "" : "d-none")">@cartCount</span>
+                                </a>
+                            </div>
+                            <div>
+                                <a asp-controller="Order" asp-action="Index" class="btn btn-danger btn-lg"> <i class="fa-solid fa-receipt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <div id="toast-container"></div>
+    </div>
+
+    <footer class="py-3 text-center bg-dark text-white">
+        <div class="container">
+            <div>
+                <p>اشراف الخوالده لقطع غيار الموبايلات</p>
+            </div>
+            <div>
+                &copy; جميع الحقوق محفوظه 2025
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script src="~/js/main.js"></script>
+    <script src="~/js/site.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿@model PhoneStore.Models.Company
+
+@{
+    ViewData["Title"] = "حذف شركة";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0">تأكيد الحذف</h5>
+            </div>
+            <div class="card-body">
+                <h3 class="text-danger">هل أنت متأكد أنك تريد حذف هذه الشركة؟</h3>
+                <p>سيتم حذف الشركة: <strong>@Model.Name</strong></p>
+                <p class="text-danger">ملاحظة: إذا كانت هذه الشركة مرتبطة بأي منتجات، قد تفشل عملية الحذف لحماية البيانات. (يجب حذف المنتجات أولاً)</p>
+
+                <dl class="row mt-4">
+                    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Name)</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+                    <dt class="col-sm-3">الصورة</dt>
+                    <dd class="col-sm-9">
+                        <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? $"https://placehold.co/200x100/EEE/513061?text={Model.Name}" : Model.ImageUrl)" alt="@Model.Name" class="img-thumbnail" style="max-width: 200px; max-height: 100px; object-fit: contain;" />
+                    </dd>
+                </dl>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt me-2"></i> نعم، احذف
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary ms-2">
+                        <i class="fas fa-times me-2"></i> إلغاء
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

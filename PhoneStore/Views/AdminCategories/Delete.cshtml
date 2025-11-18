@@ -1,0 +1,39 @@
+﻿@model PhoneStore.Models.Category
+
+@{
+    ViewData["Title"] = "حذف القسم";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var adminKey = Context.Request.Query["key"];
+}
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0">تأكيد الحذف</h5>
+            </div>
+            <div class="card-body">
+                <h3 class="text-danger">هل أنت متأكد أنك تريد حذف هذا القسم؟</h3>
+                <p>سيتم حذف القسم: <strong>@Model.Name</strong></p>
+
+                @if (Model.Products.Any())
+                {
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>تنبيه:</strong> هذا القسم يحتوي على @Model.Products.Count منتجات. لا يمكن حذفه حتى يتم نقل المنتجات لقسم آخر أو حذفها.
+                    </div>
+                }
+
+                <form asp-action="Delete" asp-route-key="@adminKey">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger" @(Model.Products.Any() ? "disabled" : "")>
+                        <i class="fas fa-trash-alt me-2"></i> نعم، احذف
+                    </button>
+                    <a asp-action="Index" asp-route-key="@adminKey" class="btn btn-outline-secondary ms-2">
+                        <i class="fas fa-times me-2"></i> إلغاء
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

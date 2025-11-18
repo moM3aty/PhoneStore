@@ -1,0 +1,73 @@
+﻿@model PhoneStore.Models.ViewModels.CartViewModel
+
+@{
+    ViewData["Title"] = "سلة التسوق";
+    var culture = new System.Globalization.CultureInfo("ar-JO");
+}
+
+<section class="py-5 mt-5" id="cart">
+    <div class="container">
+        <h2 class="mb-5 text-center py-5" data-aos="fade-up" data-aos-delay="100">سلة التسوق</h2>
+
+        @if (Model.CartItems.Any())
+        {
+            <table class="table cart-table mt-5" data-aos="fade-up" data-aos-delay="100">
+                <thead>
+                    <tr>
+                        <th>الصورة</th>
+                        <th> اسم المنتج</th>
+                        <th>السعر</th>
+                        <th>الكمية</th>
+                        <th>الإجمالي</th>
+                        <th>إزالة</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body">
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@(string.IsNullOrEmpty(item.Product.ImageUrl) ? $"https://placehold.co/100x100/EEE/513061?text=No+Image" : item.Product.ImageUrl)" alt="@item.Product.Name">
+                            </td>
+                            <td>
+                                <span>@item.Product.Name</span>
+                            </td>
+                            <td>@item.Product.Price.ToString("C", culture)</td>
+                            <td>
+                                <div class="qty-control">
+                                    <button class="btn btn-outline-secondary btn-sm btn-update-quantity" data-id="@item.Product.Id" data-qty="@(item.Quantity - 1)">-</button>
+                                    <span class="mx-2">@item.Quantity</span>
+                                    <button class="btn btn-outline-secondary btn-sm btn-update-quantity" data-id="@item.Product.Id" data-qty="@(item.Quantity + 1)">+</button>
+                                </div>
+                            </td>
+                            <td class="item-total">@item.Subtotal.ToString("C", culture)</td>
+                            <td>
+                                <button class="btn btn-link text-danger btn-remove-from-cart" data-id="@item.Product.Id">
+                                    <i class="fas fa-trash remove-btn"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="d-flex justify-content-between align-items-center mt-4 flex-column flex-md-row gap-3">
+                <div class="cart-total">الإجمالي: <span id="cart-total">@Model.TotalAmount.ToString("C", culture)</span></div>
+                <a asp-controller="Cart" asp-action="Checkout" class="btn checkout-btn" id="checkout-btn">
+                    المتابعة للدفع
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-shopping-cart fa-5x text-muted mb-4"></i>
+                <h3 class="text-muted">سلة التسوق فارغة.</h3>
+                <p class="text-muted">لم تقم بإضافة أي منتجات إلى السلة بعد.</p>
+                <a asp-controller="Store" asp-action="Index" class="btn btn-primary mt-3">
+                    <i class="fas fa-store me-2"></i> اذهب إلى المتجر
+                </a>
+            </div>
+        }
+    </div>
+</section>

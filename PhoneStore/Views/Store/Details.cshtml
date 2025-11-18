@@ -1,0 +1,113 @@
+﻿@model PhoneStore.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+    var culture = new System.Globalization.CultureInfo("ar-JO");
+    bool isInWishlist = ViewBag.InWishlist ?? false;
+}
+
+<section class="py-5 mt-5">
+    <div class="container py-5">
+
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">الرئيسية</a></li>
+                <li class="breadcrumb-item"><a asp-action="Index">المتجر</a></li>
+                @if (Model.Company != null)
+                {
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-route-companyId="@Model.CompanyId">@Model.Company.Name</a></li>
+                }
+                <!-- تصحيح: استخدام Model.Category بدلاً من النص -->
+                @if (Model.Category != null)
+                {
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-route-categoryId="@Model.CategoryId">@Model.Category.Name</a></li>
+                }
+                <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+            </ol>
+        </nav>
+
+        <div class="row g-5 align-items-center">
+            <!-- صورة المنتج -->
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+                <div class="product-details-img border rounded-4 overflow-hidden position-relative bg-white shadow-sm">
+                    @if (Model.DiscountPercentage > 0)
+                    {
+                        <div class="position-absolute top-0 end-0 m-3 bg-danger text-white px-3 py-1 rounded-pill fw-bold z-2">
+                            خصم @Model.DiscountPercentage%
+                        </div>
+                    }
+
+                    <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? "https://placehold.co/600x600/EEE/513061?text=No+Image" : Model.ImageUrl)"
+                         class="img-fluid w-100 object-fit-contain"
+                         style="max-height: 500px;"
+                         alt="@Model.Name">
+                </div>
+            </div>
+
+            <!-- تفاصيل المنتج -->
+            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+                <div class="product-details-content ps-lg-4">
+                    <h6 class="text-uppercase text-muted fw-bold mb-2">
+                        <!-- تصحيح الخطأ هنا: استبدال string.IsNullOrEmpty بفحص الـ null وعرض الاسم -->
+                        @(Model.Company?.Name ?? "عام") @(Model.Category != null ? $" / {Model.Category.Name}" : "")
+                    </h6>
+                    <h1 class="fw-bold mb-3">@Model.Name</h1>
+
+                    <div class="mb-4">
+                        @if (Model.OldPrice.HasValue && Model.OldPrice > Model.Price)
+                        {
+                            <span class="text-danger fs-2 fw-bold me-2">@Model.Price د.أ</span>
+                            <span class="fs-2 fw-bold me-2"> </span>
+                            <span class="text-muted text-decoration-line-through fs-5 mx-3"> @Model.OldPrice.Value </span>
+                        }
+                        else
+                        {
+                            <span class="fs-2 fw-bold text-primary">@Model.Price د.أ</span>
+                        }
+                    </div>
+
+                    <p class="lead text-muted mb-4">
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            @Model.Description
+                        }
+                        else
+                        {
+                            <span>لا يوجد وصف متاح لهذا المنتج حالياً. قطعة غيار أصلية ومضمونة.</span>
+                        }
+                    </p>
+
+                    <div class="d-flex gap-3 mt-5">
+                        <button class="btn btn-success btn-lg px-5 flex-grow-1 btn-add-to-cart" data-id="@Model.Id">
+                            <i class="fas fa-cart-plus me-2"></i> أضف إلى السلة
+                        </button>
+
+                        <button class="btn btn-outline-danger btn-lg px-4 btn-toggle-wishlist" data-id="@Model.Id" title="@(isInWishlist ? "إزالة من المفضلة" : "إضافة للمفضلة")">
+                            @if (isInWishlist)
+                            {
+                                <i class="fa-solid fa-heart text-danger" style="color:red;"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-regular fa-heart"></i>
+                            }
+                        </button>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-light rounded-3 border">
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <i class="fas fa-shield-alt fa-lg text-primary"></i>
+                            <span class="fw-bold">ضمان الجودة:</span>
+                            <span class="text-muted">منتج أصلي مفحوص ومضمون.</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fas fa-truck fa-lg text-primary"></i>
+                            <span class="fw-bold">توصيل سريع:</span>
+                            <span class="text-muted">توصيل داخل عمان خلال ساعة ونصف.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>  

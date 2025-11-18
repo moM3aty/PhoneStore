@@ -1,0 +1,57 @@
+﻿@model PhoneStore.Models.Order
+@using PhoneStore.Extensions
+
+@{
+    ViewData["Title"] = "تم تأكيد الطلب";
+}
+
+<section class="py-5 mt-5" id="order-confirmation">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-8 mx-auto text-center" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-check-circle fa-5x text-success mb-4"></i>
+                <h2 class="mb-3">شكراً لك، @Model.CustomerName!</h2>
+                <h4 class="text-muted fw-normal mb-4">تم استلام طلبك بنجاح.</h4>
+
+                <div class="card shadow-sm border-0 text-start">
+                    <div class="card-body p-4">
+                        <h5 class="mb-3">ملخص الطلب</h5>
+                        <p class="mb-2">
+                            <strong>رقم الطلب:</strong>
+                            <span>#@Model.Id</span>
+                        </p>
+                        <p class="mb-2">
+                            <strong>التاريخ:</strong>
+                            <span>@Model.OrderDate.ToString("yyyy-MM-dd")</span>
+                        </p>
+                        <p class="mb-2">
+                            <strong>الإجمالي:</strong>
+                            <span class="fw-bold fs-5">@Model.TotalAmount.ToString("C", new System.Globalization.CultureInfo("ar-JO"))</span>
+                        </p>
+                        <p class="mb-2">
+                            <strong>طريقة الدفع:</strong>
+                            <span>@Model.PaymentMethod.GetDisplayName()</span>
+                        </p>
+                        <hr>
+                        <p class="mb-2">
+                            <strong>سيتم الشحن إلى:</strong>
+                            <span>@Model.Address, @Model.DeliveryLocation.LocationName</span>
+                        </p>
+                        <p class="mb-0">سنتواصل معك قريباً على الرقم @Model.PhoneNumber لتأكيد الطلب.</p>
+
+                        @if (Model.PaymentMethod == PaymentMethod.CliQ)
+                        {
+                            <div class="alert alert-info mt-4">
+                                <strong>للدفع عبر CliQ:</strong> يرجى تحويل المبلغ الإجمالي إلى الاسم المستعار (Ashraf) أو على الرقم (079XXXXXXX).
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-4">
+                    <i class="fas fa-home me-2"></i> العودة للرئيسية
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

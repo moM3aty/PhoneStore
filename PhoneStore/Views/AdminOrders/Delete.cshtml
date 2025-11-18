@@ -1,0 +1,34 @@
+﻿@model PhoneStore.Models.Order
+@using PhoneStore.Extensions
+
+@{
+    ViewData["Title"] = "حذف الطلب";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0">تأكيد الحذف</h5>
+            </div>
+            <div class="card-body">
+                <h3 class="text-danger">هل أنت متأكد أنك تريد حذف هذا الطلب؟</h3>
+                <p>سيتم حذف الطلب رقم: <strong>#@Model.Id</strong></p>
+                <p>الخاص بالعميل: <strong>@Model.CustomerName</strong></p>
+                <p class="text-danger">ملاحظة: سيتم حذف هذا الطلب نهائياً من قاعدة البيانات.</p>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt me-2"></i> نعم، احذف
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary ms-2">
+                        @* تم حذف المفتاح *@
+                        <i class="fas fa-times me-2"></i> إلغاء
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

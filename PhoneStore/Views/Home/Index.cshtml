@@ -1,0 +1,242 @@
+﻿@model IEnumerable<PhoneStore.Models.Company>
+@using System
+
+@{
+    ViewData["Title"] = "الرئيسية";
+
+    // --- المنطق الجديد للعرض العشوائي والذكي ---
+
+    // 1. نفصل الشركات التي تحتوي على منتجات عن التي لا تحتوي
+    var companiesWithProducts = Model.Where(c => c.Products != null && c.Products.Any()).ToList();
+    var companiesWithoutProducts = Model.Where(c => c.Products == null || !c.Products.Any()).ToList();
+
+    // 2. نخلط القوائم عشوائياً في كل مرة (Randomize)
+    var random = new Random();
+    companiesWithProducts = companiesWithProducts.OrderBy(x => random.Next()).ToList();
+    companiesWithoutProducts = companiesWithoutProducts.OrderBy(x => random.Next()).ToList();
+
+    // 3. نجمع القائمة النهائية: الأولوية للي فيها منتجات
+    var finalCompaniesList = new List<PhoneStore.Models.Company>();
+    finalCompaniesList.AddRange(companiesWithProducts);
+
+    // إذا لم يكتمل العدد لـ 4، نأخذ من الشركات الفارغة
+    if (finalCompaniesList.Count < 4)
+    {
+        finalCompaniesList.AddRange(companiesWithoutProducts.Take(4 - finalCompaniesList.Count));
+    }
+
+    // نأخذ أول 4 فقط للعرض
+    var topCompanies = finalCompaniesList.Take(4).ToList();
+}
+
+<section id="home" class="hero d-flex flex-column gap-4 justify-content-center">
+    <div class="container">
+        <div class="row g-4 align-items-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-6 hero-text">
+                <h1>
+                    بوابتك إلى أفضل قطع غيار الموبايلات
+                </h1>
+                <p class="">
+                    اكتشف قطع غيار عالية الجودة لجميع أنواع الهواتف المحمولة مع شحن سريع وأسعار تنافسية.
+                </p>
+
+                <div class="hero-btns d-flex gap-3 mt-5 justify-content-lg-start">
+                    <a href="#mobileCompany" class="btn btn-danger btn-lg">استكشف الشركات</a>
+                    <a asp-controller="Store" asp-action="Index" class="btn btn-outline-light btn-lg ms-3">تسوق الان</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-shape"></div>
+</section>
+
+<section class="shop-section py-5">
+    <div class="container mb-5">
+        <h2 class="text-center">استكشف أبرز العلامات التجارية التقنية</h2>
+    </div>
+    <div class="store-animated-bar mb-5 py-2 position-relative">
+        <div class="container">
+            <div class="row g-4 justify-content-center align-items-center">
+
+                @foreach (var company in Model)
+                {
+                    <div class="col-4 col-sm-3 col-xl-2">
+                        <div class="img h-100 p-4">
+                            <a asp-controller="Store" asp-action="Index" asp-route-companyId="@company.Id">
+                                <img class="img-fluid"
+                                     src="@(string.IsNullOrEmpty(company.ImageUrl) ? $"https://placehold.co/200x100/EEE/513061?text={company.Name}" : company.ImageUrl)"
+                                     alt="@company.Name">
+                            </a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 mobile-company" id="mobileCompany">
+    <div class="container py-5">
+        <div class="heading text-center mb-5" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="mb-3">شركة الموبايلات</h2>
+            <p class="text-muted fw-medium">
+                استكشف أفضل الماركات وقطع الغيار الأصلية لجميع احتياجاتك من الموبايلات
+            </p>
+        </div>
+        <div class="row g-4">
+
+            @foreach (var company in topCompanies)
+            {
+                // كود لجلب صورة عشوائية لأي منتج داخل الشركة
+                var randomProductImage = company.Products
+                .Where(p => !string.IsNullOrEmpty(p.ImageUrl))
+                .OrderBy(x => Guid.NewGuid())
+                .Select(p => p.ImageUrl)
+                .FirstOrDefault();
+
+                // إذا لم توجد منتجات لها صور، نستخدم لوجو الشركة، وإلا صورة افتراضية
+                var displayImage = randomProductImage ??
+                company.ImageUrl ??
+                $"https://placehold.co/300x400/EEE/513061?text={company.Name}";
+
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card">
+                        <div class="product-img img-2">
+                            <!-- عرض الصورة بارتفاع ثابت وملاءمة (Contain) لضمان ظهورها كاملة -->
+                            <img src="@displayImage" alt="@company.Name" style="width: 100%; height: 250px; object-fit: contain;">
+                        </div>
+                        <div class="product-info align-items-center">
+                            <h3 class="title">@company.Name</h3>
+                            <p>@(company.Products.Count) منتجات متاحة</p>
+                            <div>
+                                <a asp-controller="Store" asp-action="Index" asp-route-companyId="@company.Id" class="btn">استكشف القطع</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+<section id="whyUs" class="why-us py-5 bg-light">
+    <div class="container py-5">
+        <div class="heading text-center mb-5" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="mb-3">لماذا تختارنا؟</h2>
+            <p class="text-muted fw-medium">
+                نوفر أفضل قطع غيار الموبايلات والخدمات الموثوقة لجعل عملية الشراء سهلة
+                وموثوقة.
+            </p>
+        </div>
+        <div class="row g-4 mt-5">
+            <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="box text-center">
+                    <i class="fa-solid fa-shield-halved fa-3x mb-3"></i>
+                    <h3>موثوقية عالية</h3>
+                    <p class="text-muted fw-medium">جميع افراد فريقنا معتمدون وموثوقون لضمان أفضل تجربة.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="box text-center">
+                    <i class="fa-solid fa-truck-fast fa-3x mb-3"></i>
+                    <h3>شحن سريع</h3>
+                    <p class="text-muted fw-medium">حلول شحن سريعة وآمنة إلى موقعك.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="box text-center">
+                    <i class="fa-solid fa-headset fa-3x mb-3"></i>
+                    <h3>دعم مخصص</h3>
+                    <p class="text-muted fw-medium">
+                        فريقنا يقدم الدعم والإرشاد في كل خطوة من خطوات شراء قطع الغيار.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="box text-center">
+                    <i class="fa-solid fa-tags fa-3x mb-3"></i>
+                    <h3>أسعار تنافسية</h3>
+                    <p class="text-muted fw-medium">نضمن لك أفضل الأسعار والعروض الحصرية.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 contact" id="contact">
+    <div class="container">
+        <div class="heading text-center" data-aos="fade-up" data-aos-delay="100">
+            <h2>تواصل معنا</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="map mb-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3385.2856335358215!2d35.9472612!3d31.9531469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b5f0078abc8ab%3A0x9e302fd43442eb39!2z2YXYrdmEINio2KfZitiq!5e0!3m2!1sar!2seg!4v1763333896236!5m2!1sar!2seg"
+                            height="300" style="border:0; width:100%;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p class="text-muted fw-medium">
+                    موقع الفرع الأول - عمان
+                </p>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="map mb-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3373.3061483280107!2d35.89554!3d32.276745999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzLCsDE2JzM2LjMiTiAzNcKwNTMnNDMuOSJF!5e0!3m2!1sar!2seg!4v1763397921417!5m2!1sar!2seg"
+                            height="300" style="border:0;width:100%;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p class="text-muted fw-medium">
+                    موقع الفرع الثاني - جرش
+                </p>
+            </div>
+
+            <div class="col-12" data-aos="fade-up" data-aos-delay="100">
+                <div class="content mb-4">
+                    <p class="text-muted fw-medium">
+                        <strong>التوصيل داخل عمان خلال ساعة ونصف، وخارج عمان يتم في اليوم التالي.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card py-3 px-4 d-flex align-items-center justify-content-center h-100">
+                            <h3>جميع البضائع مقفولة قبل التركيب لضمان الجودة والأمان.</h3>
+                            <p class="text-center text-muted fw-medium">
+                                نحن نقدم دعم فوري لأي استفسار أو تعديل تحتاجه، فريقنا متواجد للرد مباشرة عبر الهاتف
+                                أو
+                                واتساب.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card py-3 px-4 d-flex align-items-center justify-content-center h-100">
+                            <div class="icon mb-3">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <a href="https://wa.me/962792747477" target="_blank"
+                               class="text-decoration-none fw-bold">
+                                تواصل عبر واتساب
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card py-3 px-4 d-flex align-items-center justify-content-center h-100">
+                            <div class="icon mb-3">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <a href="tel:+962792747477" class="text-decoration-none fw-bold">
+                                اتصل بنا مباشرة
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,277 @@
+﻿@model PhoneStore.Models.ViewModels.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "إتمام الطلب";
+    var culture = new System.Globalization.CultureInfo("ar-JO");
+}
+
+<section class="py-5 mt-5" id="checkout" style="background-color: #f8f9fa;">
+    <div class="container py-4">
+
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold text-primary mb-2">إتمام الطلب</h2>
+            <p class="text-muted">يرجى ملء البيانات التالية لإكمال عملية الشراء</p>
+        </div>
+
+        <form asp-action="Checkout" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4 rounded-3 border-0 shadow-sm"></div>
+
+            <div class="row g-4">
+                <!-- القسم الأيمن: بيانات التوصيل والدفع -->
+                <div class="col-lg-7 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+                    <!-- بطاقة معلومات التوصيل -->
+                    <div class="card shadow-sm border-0 rounded-3 mb-4">
+                        <div class="card-header bg-white border-bottom p-3">
+                            <h5 class="mb-0 fw-bold text-primary">
+                                <i class="fas fa-map-marker-alt me-2"></i> 1. معلومات التوصيل
+                            </h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <label asp-for="CustomerName" class="form-label fw-bold text-secondary"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0"><i class="fas fa-user text-muted"></i></span>
+                                    <input asp-for="CustomerName" class="form-control border-start-0 bg-light" placeholder="الاسم الكامل" />
+                                </div>
+                                <span asp-validation-for="CustomerName" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="PhoneNumber" class="form-label fw-bold text-secondary"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0"><i class="fas fa-phone text-muted"></i></span>
+                                    <input asp-for="PhoneNumber" class="form-control border-start-0 bg-light" placeholder="079xxxxxxx" />
+                                </div>
+                                <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="DeliveryLocationId" class="form-label fw-bold text-secondary"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0"><i class="fas fa-truck text-muted"></i></span>
+                                    <select asp-for="DeliveryLocationId" class="form-select border-start-0 bg-light" asp-items="Model.DeliveryLocations" id="DeliveryLocationSelect">
+                                        <option value="">-- اختر منطقة التوصيل --</option>
+                                    </select>
+                                </div>
+                                <span asp-validation-for="DeliveryLocationId" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Address" class="form-label fw-bold text-secondary"></label>
+                                <textarea asp-for="Address" class="form-control bg-light" rows="3" placeholder="اسم الشارع، رقم البناية، الطابق، وأي تفاصيل إضافية..."></textarea>
+                                <span asp-validation-for="Address" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة طريقة الدفع -->
+                    <div class="card shadow-sm border-0 rounded-3">
+                        <div class="card-header bg-white border-bottom p-3">
+                            <h5 class="mb-0 fw-bold text-primary">
+                                <i class="fas fa-credit-card me-2"></i> 2. طريقة الدفع
+                            </h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="payment-option-label w-100 h-100">
+                                        <input asp-for="PaymentMethod" type="radio" value="@PaymentMethod.CashOnDelivery" class="form-check-input visually-hidden" id="cod" checked />
+                                        <div class="payment-option-card p-3 text-center border rounded-3 h-100 d-flex flex-column justify-content-center align-items-center">
+                                            <i class="fas fa-money-bill-wave fa-2x mb-2 text-success"></i>
+                                            <span class="fw-bold d-block">الدفع عند الاستلام</span>
+                                            <small class="text-muted">ادفع نقداً عند وصول الطلب</small>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="payment-option-label w-100 h-100">
+                                        <input asp-for="PaymentMethod" type="radio" value="@PaymentMethod.CliQ" class="form-check-input visually-hidden" id="cliq" />
+                                        <div class="payment-option-card p-3 text-center border rounded-3 h-100 d-flex flex-column justify-content-center align-items-center">
+                                            <i class="fas fa-paper-plane fa-2x mb-2 text-primary"></i>
+                                            <span class="fw-bold d-block">تحويل كليك (CliQ)</span>
+                                            <small class="text-muted">تحويل بنكي فوري</small>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="PaymentMethod" class="text-danger small d-block mt-2"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- القسم الأيسر: ملخص الطلب -->
+                <div class="col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card shadow border-0 rounded-3 position-sticky" style="top: 100px;">
+                        <div class="card-header bg-primary text-white p-3">
+                            <h5 class="mb-0 fw-bold text-white">
+                                <i class="fas fa-shopping-bag me-2 "></i> 3. ملخص الطلب
+                            </h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <!-- قائمة المنتجات -->
+                            <div class="products-list p-3" style="max-height: 300px; overflow-y: auto;">
+                                @foreach (var item in Model.CartSummary.CartItems)
+                                {
+                                    <div class="d-flex align-items-center mb-3 pb-3 border-bottom last-no-border">
+                                        <div class="flex-shrink-0 position-relative">
+                                            <img src="@(string.IsNullOrEmpty(item.Product.ImageUrl) ? "https://placehold.co/60x60/EEE/513061?text=img" : item.Product.ImageUrl)"
+                                                 alt="@item.Product.Name"
+                                                 class="rounded-3 border"
+                                                 style="width: 60px; height: 60px; object-fit: cover;">
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                                @item.Quantity
+                                            </span>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-0 fw-bold text-dark">@item.Product.Name</h6>
+                                            <small class="text-muted">@item.Product.Company?.Name</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="fw-bold text-primary">@item.Subtotal.ToString("C", culture)</span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- الحسابات -->
+                            <div class="bg-light p-4 rounded-bottom-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">المجموع الفرعي</span>
+                                    <span class="fw-bold" id="subtotal">@Model.CartSummary.TotalAmount.ToString("C", culture)</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                                    <span class="text-muted">رسوم التوصيل</span>
+                                    <span class="fw-bold text-success" id="delivery-fee">@Model.DeliveryFee.ToString("C", culture)</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <span class="fs-5 fw-bold text-dark">الإجمالي الكلي</span>
+                                    <span class="fs-4 fw-bold text-primary" id="total-amount">
+                                        @((Model.CartSummary.TotalAmount + Model.DeliveryFee).ToString("C", culture))
+                                    </span>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-3 shadow-sm btn-hover-effect">
+                                    <i class="fas fa-check-circle me-2"></i> تأكيد الطلب الآن
+                                </button>
+
+                                <div class="text-center mt-3">
+                                    <small class="text-muted"><i class="fas fa-lock me-1"></i> جميع المعاملات آمنة ومشفرة</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<style>
+    /* ستايل خاص لخيارات الدفع */
+    .payment-option-card {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-color: #fff;
+    }
+
+    .payment-option-label input:checked + .payment-option-card {
+        border-color: var(--bs-primary) !important;
+        background-color: #f0f4ff; /* خلفية زرقاء فاتحة جداً */
+        box-shadow: 0 0 0 2px rgba(81, 48, 97, 0.2); /* تأثير الظل حول البطاقة */
+    }
+
+    .payment-option-label:hover .payment-option-card {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    /* تحسينات عامة */
+    .last-no-border:last-child {
+        border-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .btn-hover-effect {
+        transition: transform 0.2s;
+    }
+
+        .btn-hover-effect:hover {
+            transform: translateY(-2px);
+        }
+
+    /* تخصيص لون الـ Primary ليتماشى مع هوية المتجر */
+    .text-primary {
+        color: #513061 !important;
+    }
+
+    .bg-primary {
+        background-color: #513061 !important;
+    }
+
+    .btn-primary {
+        background-color: #513061;
+        border-color: #513061;
+    }
+
+        .btn-primary:hover {
+            background-color: #432552;
+            border-color: #432552;
+        }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const locationSelect = document.getElementById('DeliveryLocationSelect');
+            const deliveryFeeEl = document.getElementById('delivery-fee');
+            const totalAmountEl = document.getElementById('total-amount');
+
+            const subtotal = @Model.CartSummary.TotalAmount;
+
+            const formatter = new Intl.NumberFormat('ar-JO', {
+                style: 'currency',
+                currency: 'JOD'
+            });
+
+            locationSelect.addEventListener('change', function() {
+                const locationId = this.value;
+
+                if (!locationId) {
+                    updateTotals(0);
+                    return;
+                }
+
+                fetch(`/Cart/GetDeliveryFee?id=${locationId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        updateTotals(data.fee);
+                    } else {
+                        updateTotals(0);
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching delivery fee:', err);
+                    updateTotals(0);
+                });
+            });
+
+            function updateTotals(fee) {
+                const total = subtotal + fee;
+
+                deliveryFeeEl.textContent = formatter.format(fee);
+                totalAmountEl.textContent = formatter.format(total);
+            }
+        });
+    </script>
+}

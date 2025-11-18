@@ -1,0 +1,301 @@
+﻿@model PhoneStore.Models.Order
+@using PhoneStore.Extensions
+
+@{
+    Layout = null;
+    var culture = new System.Globalization.CultureInfo("ar-JO");
+    decimal subTotal = Model.OrderDetails.Sum(od => od.UnitPrice * od.Quantity);
+    decimal deliveryFee = Model.DeliveryLocation?.DeliveryFee ?? 0;
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فاتورة #@Model.Id - أشرف الخوالدة</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #fff;
+            color: #333;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        .invoice-container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+        }
+
+        /* Header */
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #513061;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .company-logo h1 {
+            color: #513061;
+            font-weight: 800;
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .invoice-meta {
+            text-align: left;
+        }
+
+        .invoice-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .info-box h5 {
+            color: #6c757d;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .info-content p {
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        /* Table */
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+            .invoice-table th {
+                background-color: #f8f9fa;
+                color: #513061;
+                font-weight: 700;
+                text-align: center;
+                padding: 12px;
+                border: 1px solid #dee2e6;
+            }
+
+                .invoice-table th:first-child {
+                    text-align: right;
+                }
+
+            .invoice-table td {
+                padding: 12px;
+                border: 1px solid #dee2e6;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+                .invoice-table td:first-child {
+                    text-align: right;
+                }
+
+        .product-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .product-meta {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        /* Totals */
+        .totals-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .totals-table {
+            width: 350px;
+            border-collapse: collapse;
+        }
+
+            .totals-table td {
+                padding: 8px 15px;
+                text-align: left;
+            }
+
+                .totals-table td:first-child {
+                    text-align: right;
+                    color: #6c757d;
+                    font-weight: 600;
+                }
+
+            .totals-table .final-total td {
+                border-top: 2px solid #333;
+                font-size: 1.2rem;
+                font-weight: 800;
+                color: #513061;
+                padding-top: 15px;
+            }
+
+        /* Footer */
+        .invoice-footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        @@media print {
+            .no-print {
+                display: none !important;
+            }
+
+            .invoice-container {
+                padding: 0;
+            }
+
+            body {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container invoice-container">
+
+        <!-- أزرار الطباعة -->
+        <div class="text-center mb-4 no-print">
+            <button onclick="window.print()" class="btn btn-primary px-4 rounded-pill shadow-sm">
+                <i class="fas fa-print me-2"></i> طباعة الفاتورة
+            </button>
+            <button onclick="window.close()" class="btn btn-outline-secondary px-4 rounded-pill ms-2">
+                إغلاق
+            </button>
+        </div>
+
+        <!-- رأس الفاتورة -->
+        <header class="invoice-header">
+            <div class="company-logo">
+                <h1>أشرف الخوالدة</h1>
+                <p class="mb-0">لقطع غيار الموبايلات</p>
+            </div>
+            <div class="invoice-meta">
+                <div class="invoice-title">فاتورة</div>
+                <div><strong>رقم:</strong> #@Model.Id</div>
+                <div><strong>التاريخ:</strong> @Model.OrderDate.ToString("yyyy/MM/dd")</div>
+            </div>
+        </header>
+
+        <!-- معلومات الفاتورة -->
+        <div class="info-grid">
+            <div class="info-box">
+                <h5>تفاصيل العميل</h5>
+                <div class="info-content">
+                    <p>@Model.CustomerName</p>
+                    <p>@Model.PhoneNumber</p>
+                    <p>@Model.DeliveryLocation.LocationName - @Model.Address</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <h5>تفاصيل الدفع</h5>
+                <div class="info-content">
+                    <p><strong>الطريقة:</strong> @Model.PaymentMethod.GetDisplayName()</p>
+                    <p><strong>الحالة:</strong> @Model.Status.GetDisplayName()</p>
+                    @if (Model.PaymentMethod == PhoneStore.Models.PaymentMethod.CliQ)
+                    {
+                        <p class="text-muted small mt-1">(الدفع عبر كليك)</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- جدول المنتجات -->
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">المنتج</th>
+                    <th>السعر</th>
+                    <th>الكمية</th>
+                    <th>الإجمالي</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.OrderDetails != null && Model.OrderDetails.Any())
+                {
+                    foreach (var item in Model.OrderDetails)
+                    {
+                        <tr>
+                            <td>
+                                <div class="product-name">@(item.Product?.Name ?? "منتج غير معروف")</div>
+                                <div class="product-meta">
+                                    @(item.Product?.Company?.Name ?? "")
+                                    @(item.Product?.Category != null ? " - " + item.Product.Category.Name : "")
+                                </div>
+                            </td>
+                            <td>@item.UnitPrice.ToString("C", culture)</td>
+                            <td>@item.Quantity</td>
+                            <td>@((item.UnitPrice * item.Quantity).ToString("C", culture))</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">لا توجد منتجات في هذه الفاتورة</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- الإجماليات -->
+        <div class="totals-container">
+            <table class="totals-table">
+                <tr>
+                    <td>المجموع الفرعي</td>
+                    <td>@subTotal.ToString("C", culture)</td>
+                </tr>
+                <tr>
+                    <td>رسوم التوصيل (@Model.DeliveryLocation.LocationName)</td>
+                    <td>@deliveryFee.ToString("C", culture)</td>
+                </tr>
+                <tr class="final-total">
+                    <td>الإجمالي المستحق</td>
+                    <td>@Model.TotalAmount.ToString("C", culture)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- التذييل -->
+        <footer class="invoice-footer">
+            <p>شكراً لتعاملك معنا!</p>
+            <p>في حالة وجود أي استفسار يرجى التواصل معنا على الرقم: 079xxxxxxx</p>
+            <p class="mt-2">جميع الحقوق محفوظة &copy; @DateTime.Now.Year - أشرف الخوالدة</p>
+        </footer>
+
+    </div>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</body>
+</html>

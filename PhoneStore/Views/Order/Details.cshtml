@@ -1,0 +1,131 @@
+﻿@model PhoneStore.Models.Order
+@using PhoneStore.Extensions
+
+@{
+    ViewData["Title"] = $"تفاصيل الطلب #{Model.Id}";
+    var culture = new System.Globalization.CultureInfo("ar-JO");
+
+    decimal subTotal = Model.OrderDetails.Sum(od => od.UnitPrice * od.Quantity);
+    decimal deliveryFee = Model.DeliveryLocation?.DeliveryFee ?? 0;
+}
+
+<section class="py-5 mt-5" id="order-details">
+    <div class="container py-5 mt-3">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="mb-0">تفاصيل الطلب <span class="text-primary">#@Model.Id</span></h2>
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-right me-2"></i> العودة لسجل الطلبات
+            </a>
+        </div>
+
+        <div class="row g-4">
+            <!-- تفاصيل الطلب -->
+            <div class="col-lg-8">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="mb-0">المنتجات</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>المنتج</th>
+                                        <th>السعر</th>
+                                        <th>الكمية</th>
+                                        <th>الإجمالي الفرعي</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.OrderDetails)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="@(string.IsNullOrEmpty(item.Product.ImageUrl) ? $"https://placehold.co/60x60/EEE/513061?text=No+Image" : item.Product.ImageUrl)" alt="@item.Product.Name" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;" />
+                                                    <span class="ms-3">@item.Product.Name</span>
+                                                </div>
+                                            </td>
+                                            <td>@item.UnitPrice.ToString("C", culture)</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@((item.UnitPrice * item.Quantity).ToString("C", culture))</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-end border-0">المجموع الفرعي:</td>
+                                        <td class="border-0">@subTotal.ToString("C", culture)</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-end">رسوم التوصيل (@Model.DeliveryLocation.LocationName):</td>
+                                        <td>@deliveryFee.ToString("C", culture)</td>
+                                    </tr>
+                                    <tr class="fw-bold fs-5">
+                                        <td colspan="3" class="text-end">الإجمالي الكلي:</td>
+                                        <td>@Model.TotalAmount.ToString("C", culture)</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- معلومات العميل والحالة -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">معلومات الشحن</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-1"><strong>@Model.CustomerName</strong></p>
+                        <p class="mb-1">@Model.PhoneNumber</p>
+                        <hr>
+                        <p class="mb-1"><strong>العنوان:</strong></p>
+                        <p class="mb-1">@Model.Address, @Model.DeliveryLocation.LocationName</p>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="mb-0">ملخص الفاتورة</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-1">
+                            <strong>حالة الطلب:</strong>
+                            <span class="badge @GetStatusBadgeClass(Model.Status)">
+                                @Model.Status.GetDisplayName()
+                            </span>
+                        </p>
+                        <p class="mb-0">
+                            <strong>طريقة الدفع:</strong> @Model.PaymentMethod.GetDisplayName()
+                        </p>
+                        @if (Model.PaymentMethod == PaymentMethod.CliQ)
+                        {
+                            <div class="alert alert-info mt-3 small">
+                                <strong>للدفع عبر CliQ:</strong> يرجى تحويل المبلغ الإجمالي إلى الاسم المستعار (Ashraf) أو على الرقم (079XXXXXXX) إذا لم تكن قد قمت بالتحويل بعد.
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@functions {
+    string GetStatusBadgeClass(OrderStatus status)
+    {
+        return status switch
+        {
+            OrderStatus.Pending => "bg-warning text-dark",
+            OrderStatus.Processing => "bg-info text-dark",
+            OrderStatus.Shipped => "bg-primary",
+            OrderStatus.Completed => "bg-success",
+            OrderStatus.Cancelled => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+}

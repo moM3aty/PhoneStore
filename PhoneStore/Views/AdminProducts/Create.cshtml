@@ -1,0 +1,98 @@
+﻿@model PhoneStore.Models.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "إضافة منتج جديد";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">إضافة منتج جديد</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="Product.Name" class="form-label"></label>
+                                <input asp-for="Product.Name" class="form-control" />
+                                <span asp-validation-for="Product.Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="Product.CompanyId" class="form-label"></label>
+                                <select asp-for="Product.CompanyId" class="form-select" asp-items="Model.CompanyList">
+                                    <option value="">-- اختر الشركة --</option>
+                                </select>
+                                <span asp-validation-for="Product.CompanyId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="Product.Price" class="form-label"></label>
+                                <input asp-for="Product.Price" class="form-control" />
+                                <span asp-validation-for="Product.Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="Product.OldPrice" class="form-label"></label>
+                                <input asp-for="Product.OldPrice" class="form-control" placeholder="اتركه فارغاً إذا لا يوجد خصم" />
+                                <span asp-validation-for="Product.OldPrice" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- استبدال الحقل النصي بالقائمة المنسدلة -->
+                            <div class="mb-3">
+                                <label asp-for="Product.CategoryId" class="form-label"></label>
+                                <select asp-for="Product.CategoryId" class="form-select" asp-items="Model.CategoryList">
+                                    <option value="">-- اختر القسم --</option>
+                                </select>
+                                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="ImageFile" class="form-label"></label>
+                                <input asp-for="ImageFile" class="form-control" type="file" />
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Product.Description" class="form-label"></label>
+                        <textarea asp-for="Product.Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Product.Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-2"></i> حفظ المنتج
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary ms-2">
+                            <i class="fas fa-times me-2"></i> إلغاء
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

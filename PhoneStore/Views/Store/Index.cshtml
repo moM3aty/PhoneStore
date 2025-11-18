@@ -1,0 +1,177 @@
+﻿@model PhoneStore.Models.ViewModels.StoreViewModel
+@{
+    ViewData["Title"] = "المتجر";
+}
+
+<section id="home" class="shop-hero d-flex flex-column gap-4 justify-content-center">
+    <div class="container">
+        <div class="heading" data-aos="fade-up" data-aos-delay="100">
+            <div class="row g-4 justify-content-center align-items-center">
+                <div class="col-lg-8">
+                    <div class="content mt-5">
+                        <h2 class="mb-3 text-white">متجرنا</h2>
+                        <p>
+                            نوفر لك مجموعة مميزة من قطع غيار الموبايلات بجودة موثوقة وأسعار تنافسية.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="parts" id="products">
+    <div class="container-fluid">
+        <div class="row g-4">
+            <!-- القائمة الجانبية للموبايل -->
+            <div class="col-12 d-md-none text-end py-3">
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#sidebarMenu" aria-expanded="false" aria-controls="sidebarMenu">
+                    ☰ الفلترة
+                </button>
+            </div>
+
+            <!-- القائمة الجانبية -->
+            <div class="col-12 col-md-3 col-lg-2">
+                <div class="collapse d-md-block h-100" id="sidebarMenu">
+                    <div class="sidebar py-1 py-md-4 h-100 px-2">
+
+                        <!-- فلتر الشركات -->
+                        <h5 class="text-center mt-5 mb-3">الشركات</h5>
+                        <a asp-controller="Store" asp-action="Index" asp-route-categoryId="@Model.SelectedCategoryId"
+                           class="btn btn-light brand-btn w-100 mb-2 @(Model.SelectedCompanyId == null ? "active" : "")">
+                            الكل
+                        </a>
+                        @foreach (var company in Model.Companies)
+                        {
+                            <a asp-controller="Store" asp-action="Index"
+                               asp-route-companyId="@company.Id"
+                               asp-route-categoryId="@Model.SelectedCategoryId"
+                               class="btn btn-light brand-btn w-100 mb-2 @(Model.SelectedCompanyId == company.Id ? "active" : "")">
+                                @company.Name
+                            </a>
+                        }
+
+                        <hr />
+
+                        <!-- فلتر الأقسام (التعديل الجديد) -->
+                        <h5 class="text-center mt-4 mb-3">الأقسام</h5>
+
+                        <a asp-controller="Store" asp-action="Index" asp-route-companyId="@Model.SelectedCompanyId"
+                           class="part-item d-block @(Model.SelectedCategoryId == null ? "active" : "")">
+                            عرض كل الأقسام
+                        </a>
+
+                        @foreach (var category in Model.Categories)
+                        {
+                            <a asp-controller="Store" asp-action="Index"
+                               asp-route-companyId="@Model.SelectedCompanyId"
+                               asp-route-categoryId="@category.Id"
+                               class="part-item d-block @(Model.SelectedCategoryId == category.Id ? "active" : "")">
+                                @category.Name
+                            </a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- عرض المنتجات -->
+            <div class="col-12 col-md-9 col-lg-10 p-4">
+                <h2 class="mb-4" data-aos="fade-up" data-aos-delay="100">
+                    @if (Model.SelectedCategoryId != null)
+                    {
+                        <span>@Model.Categories.FirstOrDefault(c => c.Id == Model.SelectedCategoryId)?.Name</span>
+                    }
+                    else
+                    {
+                        <span>المنتجات</span>
+                    }
+
+                    @if (Model.SelectedCompanyId != null)
+                    {
+                        <span class="text-muted fs-5"> / @Model.Companies.FirstOrDefault(c => c.Id == Model.SelectedCompanyId)?.Name</span>
+                    }
+                </h2>
+
+                <div id="products-container" class="row g-4" data-aos="fade-up" data-aos-delay="100">
+                    @if (!Model.Products.Any())
+                    {
+                        <div class="col-12">
+                            <p class="text-center fs-4 text-muted py-5">
+                                لا توجد منتجات في هذا القسم حالياً.
+                                <br>
+                                <a asp-action="Index" class="btn btn-outline-primary mt-3">عرض كل المنتجات</a>
+                            </p>
+                        </div>
+                    }
+
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="product-card position-relative overflow-hidden">
+
+                                @if (item.DiscountPercentage > 0)
+                                {
+                                    <div class="position-absolute top-0 end-0 m-2 bg-danger text-white p-1 px-2 rounded-pill z-2" style="font-size: 0.9rem;">
+                                        خصم @item.DiscountPercentage%
+                                    </div>
+                                }
+
+                                <div class="wishlist position-absolute top-0 start-0 z-2">
+                                    <button class="btn-toggle-wishlist" data-id="@item.Id" title="@(Model.WishlistIds.Contains(item.Id) ? "إزالة من المفضلة" : "إضافة للمفضلة")">
+                                        @if (Model.WishlistIds.Contains(item.Id))
+                                        {
+                                            <i class="fa-solid fa-heart fa-lg text-danger" style="color:red;"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa-regular fa-heart fa-lg"></i>
+                                        }
+                                    </button>
+                                </div>
+                                <div class="product-img">
+                                    <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Id">
+                                        <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "https://placehold.co/400x400/EEE/513061?text=Product" : item.ImageUrl)" alt="@item.Name">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none">
+                                        <h3 class="title">@item.Name</h3>
+                                    </a>
+                                    <div class="mb-2">
+                                        <span class="badge bg-light text-dark border">@item.Company?.Name</span>
+                                        @if (item.Category != null)
+                                        {
+                                            <span class="badge bg-light text-dark border ms-1">@item.Category.Name</span>
+                                        }
+                                    </div>
+                                    <p class="text-muted text-truncate">@item.Description</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="price">
+                                            @if (item.OldPrice.HasValue && item.OldPrice > item.Price)
+                                            {
+                                                <p class="mb-0">
+                                                    <span class="text-danger fs-5">@item.Price د.أ </span>
+                                                    <span class="text-danger fs-5"></span>
+                                                    <span class="text-muted text-decoration-line-through ms-2" style="font-size: 0.9rem;"> @item.OldPrice.Value </span>
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <p class="mb-0 fs-5">@item.Price د.أ</p>
+                                            }
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-success btn-sm btn-add-to-cart" data-id="@item.Id">اضف للسلة</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

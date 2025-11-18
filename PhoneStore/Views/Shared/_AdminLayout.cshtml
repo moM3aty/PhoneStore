@@ -1,0 +1,103 @@
+﻿@{
+    // لا نحتاج المفتاح السري هنا بعد الآن
+}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - لوحة التحكم</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/admin.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- القائمة الجانبية -->
+        <div id="sidebar-wrapper">
+            <div class="sidebar-heading">
+                <a asp-controller="Admin" asp-action="Index">لوحة التحكم</a>
+            </div>
+            <div class="list-group list-group-flush">
+                <a asp-controller="Admin" asp-action="Index" class="list-group-item list-group-item-action"
+                   asp-route-controller="Admin" asp-action="Index">
+                    <i class="fas fa-tachometer-alt fa-fw me-2"></i> لوحة التحكم
+                </a>
+                <a asp-controller="AdminOrders" asp-action="Index" class="list-group-item list-group-item-action"
+                   asp-route-controller="AdminOrders">
+                    <i class="fas fa-receipt fa-fw me-2"></i> إدارة الطلبات
+                </a>
+                <a asp-controller="AdminProducts" asp-action="Index" class="list-group-item list-group-item-action"
+                   asp-route-controller="AdminProducts">
+                    <i class="fas fa-mobile-alt fa-fw me-2"></i> إدارة المنتجات
+                </a>
+                <!-- رابط الأقسام الجديد -->
+                <a asp-controller="AdminCategories" asp-action="Index" class="list-group-item list-group-item-action"
+                   asp-route-controller="AdminCategories">
+                    <i class="fas fa-tags fa-fw me-2"></i> إدارة الأقسام
+                </a>
+                <a asp-controller="AdminCompanies" asp-action="Index" class="list-group-item list-group-item-action"
+                   asp-route-controller="AdminCompanies">
+                    <i class="fas fa-building fa-fw me-2"></i> إدارة الشركات
+                </a>
+                <a asp-controller="AdminLocations" asp-action="Index" class="list-group-item list-group-item-action"
+                   asp-route-controller="AdminLocations">
+                    <i class="fas fa-map-marked-alt fa-fw me-2"></i> مناطق التوصيل
+                </a>
+                <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action">
+                    <i class="fas fa-store fa-fw me-2"></i> العودة للمتجر
+                </a>
+            </div>
+        </div>
+
+        <!-- محتوى الصفحة -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="container-fluid">
+                    <button class="btn btn-primary" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h5 class="mb-0 ms-auto me-3">@ViewData["Title"]</h5>
+
+                    <form asp-controller="Account" asp-action="Logout" method="post" class="ms-2">
+                        <button type="submit" class="btn btn-outline-danger">
+                            <i class="fas fa-sign-out-alt me-2"></i> تسجيل الخروج
+                        </button>
+                    </form>
+                </div>
+            </nav>
+
+            <div class="container-fluid p-4">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // تفعيل/إلغاء القائمة الجانبية
+            document.getElementById("menu-toggle").addEventListener("click", function (e) {
+                e.preventDefault();
+                document.getElementById("wrapper").classList.toggle("toggled");
+            });
+
+            // تفعيل الرابط النشط في القائمة الجانبية
+            var currentController = "@ViewContext.RouteData.Values["controller"]?.ToString()";
+            var currentAction = "@ViewContext.RouteData.Values["action"]?.ToString()";
+
+            var links = document.querySelectorAll("#sidebar-wrapper .list-group-item-action");
+            links.forEach(function (link) {
+                var linkController = link.getAttribute("asp-route-controller");
+                var linkAction = link.getAttribute("asp-route-action") || "Index";
+
+                if (linkController === currentController && (linkAction === currentAction || (currentController === "Admin" && linkAction === "Index"))) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

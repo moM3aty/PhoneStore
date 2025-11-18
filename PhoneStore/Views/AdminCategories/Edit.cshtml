@@ -1,0 +1,44 @@
+﻿@model PhoneStore.Models.Category
+
+@{
+    ViewData["Title"] = "تعديل القسم";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var adminKey = Context.Request.Query["key"];
+}
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">تعديل القسم</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" asp-route-key="@adminKey">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-2"></i> حفظ التعديلات
+                        </button>
+                        <a asp-action="Index" asp-route-key="@adminKey" class="btn btn-outline-secondary ms-2">
+                            <i class="fas fa-times me-2"></i> إلغاء
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

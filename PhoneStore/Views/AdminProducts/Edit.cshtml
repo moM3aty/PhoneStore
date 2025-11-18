@@ -1,0 +1,109 @@
+﻿@model PhoneStore.Models.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "تعديل منتج";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">تعديل: @Model.Product.Name</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Product.Id" />
+                    <input type="hidden" asp-for="Product.ImageUrl" />
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label asp-for="Product.Name" class="form-label"></label>
+                                        <input asp-for="Product.Name" class="form-control" />
+                                        <span asp-validation-for="Product.Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label asp-for="Product.CompanyId" class="form-label"></label>
+                                        <select asp-for="Product.CompanyId" class="form-select" asp-items="Model.CompanyList"></select>
+                                        <span asp-validation-for="Product.CompanyId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label asp-for="Product.Price" class="form-label"></label>
+                                        <input asp-for="Product.Price" class="form-control" />
+                                        <span asp-validation-for="Product.Price" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label asp-for="Product.OldPrice" class="form-label"></label>
+                                        <input asp-for="Product.OldPrice" class="form-control" />
+                                        <span asp-validation-for="Product.OldPrice" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- استبدال الحقل النصي بالقائمة المنسدلة -->
+                                    <div class="mb-3">
+                                        <label asp-for="Product.CategoryId" class="form-label"></label>
+                                        <select asp-for="Product.CategoryId" class="form-select" asp-items="Model.CategoryList">
+                                            <option value="">-- اختر القسم --</option>
+                                        </select>
+                                        <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label asp-for="ImageFile" class="form-label"></label>
+                                        <input asp-for="ImageFile" class="form-control" type="file" />
+                                        <small class="form-text text-muted">اتركه فارغاً للاحتفاظ بالصورة الحالية</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3 text-center">
+                                <label class="form-label d-block">الصورة الحالية</label>
+                                <img src="@(string.IsNullOrEmpty(Model.Product.ImageUrl) ? $"https://placehold.co/200x200/EEE/513061?text=No+Image" : Model.Product.ImageUrl)"
+                                     alt="الصورة الحالية"
+                                     class="img-thumbnail"
+                                     style="width: 200px; height: 200px; object-fit: cover;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Product.Description" class="form-label"></label>
+                        <textarea asp-for="Product.Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Product.Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-2"></i> حفظ التعديلات
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary ms-2">
+                            <i class="fas fa-times me-2"></i> إلغاء
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,43 @@
+﻿@model PhoneStore.Models.Product
+
+@{
+    ViewData["Title"] = "حذف منتج";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0">تأكيد الحذف</h5>
+            </div>
+            <div class="card-body">
+                <h3 class="text-danger">هل أنت متأكد أنك تريد حذف هذا المنتج؟</h3>
+                <p>سيتم حذف المنتج: <strong>@Model.Name</strong></p>
+
+                <dl class="row mt-4">
+                    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Name)</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+                    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Company)</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Company.Name)</dd>
+
+                    <dt class="col-sm-3">الصورة</dt>
+                    <dd class="col-sm-9">
+                        <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? $"https://placehold.co/150x150/EEE/513061?text=No+Image" : Model.ImageUrl)" alt="@Model.Name" class="img-thumbnail" style="max-width: 150px; max-height: 150px; object-fit: cover;" />
+                    </dd>
+                </dl>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt me-2"></i> نعم، احذف
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary ms-2">
+                        <i class="fas fa-times me-2"></i> إلغاء
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

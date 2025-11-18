@@ -1,0 +1,205 @@
+﻿@model PhoneStore.Models.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "لوحة التحكم";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var culture = new System.Globalization.CultureInfo("ar-JO");
+}
+
+<!-- عنوان الصفحة -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold text-dark mb-1">نظرة عامة</h4>
+        <p class="text-muted small mb-0">مرحباً بك، إليك ملخص أداء المتجر.</p>
+    </div>
+    <div>
+        <span class="badge bg-light text-dark border p-2">@DateTime.Now.ToString("dddd, dd MMMM yyyy", culture)</span>
+    </div>
+</div>
+
+<!-- بطاقات الإحصائيات -->
+<div class="row g-4 mb-4">
+    <!-- الإيرادات -->
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="bg-success bg-opacity-10 text-success p-3 rounded-3">
+                        <i class="fas fa-money-bill-wave fa-lg"></i>
+                    </div>
+                </div>
+                <h3 class="mb-1 fw-bold text-dark">@Model.TotalRevenue.ToString("C0", culture)</h3>
+                <span class="text-muted small">إجمالي الإيرادات</span>
+            </div>
+            <div class="progress" style="height: 3px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 75%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الطلبات -->
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3">
+                        <i class="fas fa-shopping-bag fa-lg"></i>
+                    </div>
+                </div>
+                <h3 class="mb-1 fw-bold text-dark">@Model.TotalOrders</h3>
+                <span class="text-muted small">إجمالي الطلبات</span>
+            </div>
+            <div class="progress" style="height: 3px;">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 55%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- المنتجات -->
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-3">
+                        <i class="fas fa-mobile-alt fa-lg"></i>
+                    </div>
+                </div>
+                <h3 class="mb-1 fw-bold text-dark">@Model.TotalProducts</h3>
+                <span class="text-muted small">عدد المنتجات</span>
+            </div>
+            <div class="progress" style="height: 3px;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الشركات -->
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="bg-info bg-opacity-10 text-info p-3 rounded-3">
+                        <i class="fas fa-building fa-lg"></i>
+                    </div>
+                </div>
+                <h3 class="mb-1 fw-bold text-dark">@Model.TotalCompanies</h3>
+                <span class="text-muted small">الشركات المتاحة</span>
+            </div>
+            <div class="progress" style="height: 3px;">
+                <div class="progress-bar bg-info" role="progressbar" style="width: 85%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- الرسوم البيانية (Charts) -->
+<div class="row g-4">
+    <!-- رسم بياني: المنتجات لكل شركة -->
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-bottom py-3">
+                <h6 class="mb-0 fw-bold text-dark">أكثر الشركات توفراً للمنتجات</h6>
+            </div>
+            <div class="card-body">
+                <!-- تحديد ارتفاع ثابت للحاوية -->
+                <div style="height: 350px; position: relative;">
+                    <canvas id="companyChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- رسم بياني: حالات الطلب -->
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-bottom py-3">
+                <h6 class="mb-0 fw-bold text-dark">توزيع حالات الطلبات</h6>
+            </div>
+            <div class="card-body d-flex align-items-center justify-content-center" style="min-height: 350px;">
+                <!-- تصغير عرض الدائرة لتكون ملمومة -->
+                <div style="width: 100%; max-width: 250px;">
+                    <canvas id="orderStatusChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- تضمين مكتبة Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // --- 1. رسم بياني الشركات (Bar Chart) ---
+        var ctxCompany = document.getElementById('companyChart').getContext('2d');
+
+        var companyLabels = @Html.Raw(Json.Serialize(Model.CompanyLabels));
+        var companyData = @Html.Raw(Json.Serialize(Model.CompanyProductCounts));
+
+        new Chart(ctxCompany, {
+            type: 'bar',
+            data: {
+                labels: companyLabels,
+                datasets: [{
+                    label: 'عدد المنتجات',
+                    data: companyData,
+                    backgroundColor: '#513061', // لون البراند
+                    borderRadius: 4,
+                    barThickness: 40, // تقليل عرض العمود قليلاً
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // مهم جداً لملء ارتفاع الحاوية الأب (350px)
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { borderDash: [2, 2] }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // --- 2. رسم بياني حالات الطلبات (Doughnut Chart) ---
+        var ctxStatus = document.getElementById('orderStatusChart').getContext('2d');
+
+        var statusLabels = @Html.Raw(Json.Serialize(Model.OrderStatusLabels));
+        var statusData = @Html.Raw(Json.Serialize(Model.OrderStatusData));
+
+        var statusColors = ['#ffc107', '#0dcaf0', '#0d6efd', '#198754', '#dc3545'];
+
+        new Chart(ctxStatus, {
+            type: 'doughnut',
+            data: {
+                labels: statusLabels,
+                datasets: [{
+                    data: statusData,
+                    backgroundColor: statusColors,
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20,
+                            font: { size: 11 }
+                        }
+                    }
+                }
+            }
+        });
+
+    });
+</script>

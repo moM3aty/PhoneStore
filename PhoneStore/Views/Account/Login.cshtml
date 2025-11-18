@@ -1,0 +1,152 @@
+﻿@model PhoneStore.Models.ViewModels.LoginViewModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "تسجيل دخول الأدمن";
+    var returnUrl = ViewData["ReturnUrl"] as string;
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <!-- استخدام نفس متغيرات التصميم الداكن للبطاقة -->
+    <link rel="stylesheet" href="~/css/admin.css">
+
+    <style>
+        body {
+            /* استخدام صورة الهيدر من الموقع الرئيسي كخلفية */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/header.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .login-brand {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+            /* استخدام نفس لون البراند من الموقع الرئيسي */
+            .login-brand .brand-text-accent {
+                color: #b94aec;
+            }
+
+        .login-card {
+            background-color: var(--admin-card-bg);
+            border: 1px solid var(--admin-border);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            background-color: rgba(39, 42, 51, 0.85); /* بطاقة شفافة قليلاً */
+        }
+
+            .login-card .card-header {
+                background-color: var(--admin-active-bg);
+                border-bottom: 1px solid var(--admin-border);
+            }
+
+                .login-card .card-header h3 {
+                    color: var(--admin-text);
+                    margin-bottom: 0;
+                }
+
+            .login-card .form-control {
+                background-color: var(--admin-bg);
+                border: 1px solid var(--admin-border);
+                color: var(--admin-text);
+                padding: 0.75rem 1rem;
+            }
+
+                .login-card .form-control:focus {
+                    background-color: var(--admin-bg);
+                    color: var(--admin-text);
+                    border-color: var(--admin-primary);
+                    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+                }
+
+            .login-card .form-label {
+                color: var(--admin-text-muted);
+                float: right;
+            }
+
+        .btn-primary {
+            width: 100%;
+            background-color: var(--admin-primary);
+            border-color: var(--admin-primary);
+            padding: 0.75rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+            .btn-primary:hover {
+                background-color: var(--admin-primary-hover);
+                border-color: var(--admin-primary-hover);
+            }
+
+        .back-link {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+            .back-link:hover {
+                color: #fff;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+
+        <h1 class="login-brand">
+            <span class="brand-text-accent">اشرف الخوالدة</span>
+        </h1>
+
+        <div class="card login-card">
+            <div class="card-header text-center py-3">
+                <h3 class="text-white">لوحة التحكم</h3>
+            </div>
+            <div class="card-body p-4 p-md-5">
+                <form asp-action="Login" asp-route-returnurl="@returnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger p-2 text-center"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" class="form-control form-control-lg text-center" autofocus />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">تسجيل الدخول</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <a asp-controller="Home" asp-action="Index" class="back-link">العودة للمتجر</a>
+        </div>
+    </div>
+
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

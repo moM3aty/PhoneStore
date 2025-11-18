@@ -1,0 +1,102 @@
+﻿@model IEnumerable<PhoneStore.Models.Product>
+
+@{
+    ViewData["Title"] = "إدارة المنتجات";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-3 bg-white py-3">
+        <h5 class="mb-0 text-primary fw-bold">قائمة المنتجات (@Model.Count())</h5>
+        <a asp-action="Create" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus me-2"></i> إضافة منتج جديد
+        </a>
+    </div>
+
+    <div class="card-body border-bottom bg-light py-3">
+        <form asp-action="Index" method="get" class="row g-2 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label fw-bold">بحث:</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="اسم المنتج..." />
+            </div>
+            <div class="col-md-3">
+                <select name="companyId" asp-items="ViewBag.CompanyId" class="form-select">
+                    <option value="">-- كل الشركات --</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-secondary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 text-center">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="ps-4">الصورة</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Company)</th>
+                        <th>@Html.DisplayNameFor(model => model.Category)</th>
+                        <th>@Html.DisplayNameFor(model => model.Price)</th>
+                        <th>@Html.DisplayNameFor(model => model.DiscountPercentage)</th>
+                        <th style="width: 150px;">إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center py-5 text-muted">
+                                <i class="fas fa-box-open fa-3x mb-3 d-block"></i>
+                                لا توجد منتجات تطابق بحثك.
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4">
+                                    <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? $"https://placehold.co/100x100/EEE/513061?text=No+Image" : item.ImageUrl)"
+                                         alt="@item.Name"
+                                         style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 1px solid #dee2e6;" />
+                                </td>
+                                <td class="fw-bold text-dark">@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td><span class="badge bg-light text-dark border">@Html.DisplayFor(modelItem => item.Company.Name)</span></td>
+                                <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                                <td class="fw-bold">@item.Price.ToString("N2")</td>
+                                <td>
+                                    @if (item.DiscountPercentage > 0)
+                                    {
+                                        <span class="badge bg-danger bg-opacity-10 text-danger">@item.DiscountPercentage% خصم</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">-</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm mx-1" title="تعديل">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm mx-1" title="حذف">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

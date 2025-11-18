@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PhoneStore.Models.Category>
+
+@{
+    ViewData["Title"] = "إدارة الأقسام";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center bg-white py-3">
+        <h5 class="mb-0 text-primary fw-bold">قائمة الأقسام (@Model.Count())</h5>
+        <a asp-action="Create" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus me-2"></i> إضافة قسم جديد
+        </a>
+    </div>
+
+    <!-- الفلتر -->
+    <div class="card-body border-bottom bg-light py-3">
+        <form asp-action="Index" method="get" class="row g-2 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label fw-bold">بحث:</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="اسم القسم..." />
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-secondary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 text-center">
+                <thead class="bg-light">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>عدد المنتجات</th>
+                        <th style="width: 150px;">إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>
+                                <span class="badge bg-secondary">@item.Products.Count منتج</span>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm mx-1" title="تعديل">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm mx-1" title="حذف">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
