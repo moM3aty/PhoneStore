@@ -24,7 +24,6 @@ namespace PhoneStore.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // دالة العرض مع دعم البحث (Filter)
         public async Task<IActionResult> Index(string searchString)
         {
             var companies = _context.Companies.Include(c => c.Products).AsQueryable();
@@ -36,7 +35,6 @@ namespace PhoneStore.Controllers
 
             ViewData["CurrentFilter"] = searchString;
 
-            // ترتيب تنازلي (الأحدث أولاً)
             return View(await companies.OrderByDescending(c => c.Id).ToListAsync());
         }
 

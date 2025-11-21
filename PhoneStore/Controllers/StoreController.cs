@@ -5,7 +5,7 @@ using PhoneStore.Models.ViewModels;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Text.Json; // للكوكيز
+using System.Text.Json;
 
 namespace PhoneStore.Controllers
 {
@@ -18,7 +18,6 @@ namespace PhoneStore.Controllers
             _context = context;
         }
 
-        // دالة مساعدة لقراءة كوكيز المفضلة
         private List<int> GetWishlistFromCookie()
         {
             var cookie = Request.Cookies["PhoneStore_Wishlist"];
@@ -54,7 +53,6 @@ namespace PhoneStore.Controllers
             var categories = await _context.Categories.ToListAsync();
             var products = await productsQuery.ToListAsync();
 
-            // قراءة المفضلة من الكوكيز
             var wishlistIds = GetWishlistFromCookie();
 
             var viewModel = new StoreViewModel
@@ -64,7 +62,7 @@ namespace PhoneStore.Controllers
                 Categories = categories,
                 SelectedCompanyId = companyId,
                 SelectedCategoryId = categoryId,
-                WishlistIds = wishlistIds // تمرير القائمة
+                WishlistIds = wishlistIds 
             };
 
             return View(viewModel);
@@ -81,7 +79,6 @@ namespace PhoneStore.Controllers
 
             if (product == null) return NotFound();
 
-            // التحقق من المفضلة عبر الكوكيز
             var wishlistIds = GetWishlistFromCookie();
             ViewBag.InWishlist = wishlistIds.Contains(product.Id);
 

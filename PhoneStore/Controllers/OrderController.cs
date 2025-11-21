@@ -5,7 +5,7 @@ using PhoneStore.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Text.Json; // هام للكوكيز
+using System.Text.Json; 
 
 namespace PhoneStore.Controllers
 {
@@ -18,7 +18,6 @@ namespace PhoneStore.Controllers
             _context = context;
         }
 
-        // دالة مساعدة لقراءة الكوكيز
         private List<int> GetOrderIdsFromCookie()
         {
             var cookie = Request.Cookies["OrderHistory"];
@@ -36,7 +35,6 @@ namespace PhoneStore.Controllers
 
         public async Task<IActionResult> Index()
         {
-            // قراءة من الكوكيز بدلاً من السيشن
             var orderHistoryIds = GetOrderIdsFromCookie();
 
             if (orderHistoryIds.Count == 0)
@@ -59,7 +57,6 @@ namespace PhoneStore.Controllers
 
             var orderHistoryIds = GetOrderIdsFromCookie();
 
-            // التأكد من أن المستخدم هو صاحب الطلب
             if (!orderHistoryIds.Contains(id.Value))
             {
                 return RedirectToAction("Index");

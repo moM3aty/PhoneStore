@@ -1,6 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
 
-    // دالة لإظهار الإشعارات
     function showToast(message, isError = false) {
         const toastContainer = document.getElementById('toast-container');
         if (!toastContainer) return;
@@ -28,7 +27,6 @@
         toast.addEventListener('hidden.bs.toast', () => toast.remove());
     }
 
-    // تحديث أيقونة السلة
     function updateCartIcon(count) {
         const cartLink = document.getElementById('cart-link');
         if (!cartLink) return;
@@ -42,7 +40,6 @@
         }
     }
 
-    // تحديث أيقونة المفضلة
     function updateWishlistIcon(count) {
         const wishlistLink = document.getElementById('wishlist-link');
         if (!wishlistLink) return;
@@ -56,13 +53,11 @@
         }
     }
 
-    // --- دالة مساعدة لجلب التوكن ---
     function getToken() {
         const tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
         return tokenElement ? tokenElement.value : '';
     }
 
-    // --- Add to Cart ---
     document.body.addEventListener('click', function (e) {
         const target = e.target.closest('.btn-add-to-cart');
         if (!target) return;
@@ -104,7 +99,6 @@
             });
     });
 
-    // --- Smart Wishlist Toggle (Add/Remove) ---
     document.body.addEventListener('click', function (e) {
         const target = e.target.closest('.btn-toggle-wishlist');
         if (!target) return;
@@ -113,8 +107,7 @@
         const productId = target.dataset.id;
         const icon = target.querySelector('i');
 
-        // تحديد الحالة بناءً على شكل الأيقونة الحالي
-        const isCurrentlyInWishlist = icon.classList.contains('fa-solid'); // إذا كان ممتلئاً فهو مضاف
+        const isCurrentlyInWishlist = icon.classList.contains('fa-solid'); 
         const url = isCurrentlyInWishlist ? '/Cart/RemoveFromWishlist' : '/Cart/AddToWishlist';
 
         target.disabled = true;
@@ -123,7 +116,7 @@
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'RequestVerificationToken': getToken() // إضافة التوكن هنا أيضاً
+                'RequestVerificationToken': getToken() 
             },
             body: JSON.stringify({ Id: parseInt(productId) })
         })
@@ -136,14 +129,11 @@
                     showToast(data.message);
                     if (data.count !== undefined) updateWishlistIcon(data.count);
 
-                    // عكس حالة الأيقونة
                     if (isCurrentlyInWishlist) {
-                        // تم الحذف -> تحويل لفارغ
                         icon.classList.remove('fa-solid', 'text-danger');
                         icon.classList.add('fa-regular');
                         icon.style.color = '';
                     } else {
-                        // تمت الإضافة -> تحويل لممتلئ وأحمر
                         icon.classList.remove('fa-regular');
                         icon.classList.add('fa-solid', 'text-danger');
                         icon.style.color = 'red';
@@ -159,7 +149,6 @@
             .finally(() => target.disabled = false);
     });
 
-    // --- Remove from Wishlist Page ---
     document.body.addEventListener('click', function (e) {
         const target = e.target.closest('.btn-remove-from-wishlist-page');
         if (!target) return;
@@ -194,7 +183,6 @@
             .catch(() => showToast("حدث خطأ في الاتصال", true));
     });
 
-    // --- Update Cart Quantity ---
     document.body.addEventListener('click', function (e) {
         const target = e.target.closest('.btn-update-quantity');
         if (!target) return;
@@ -222,7 +210,6 @@
             });
     });
 
-    // --- Remove from Cart ---
     document.body.addEventListener('click', function (e) {
         const target = e.target.closest('.btn-remove-from-cart');
         if (!target) return;

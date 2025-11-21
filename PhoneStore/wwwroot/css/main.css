@@ -170,7 +170,6 @@ html[dir="ltr"] .section-header h2 {
 }
 
 
-/* Header/Navbar */
 .header {
   background-color: transparent;
   transition: var(--transition);
@@ -241,7 +240,6 @@ html[dir="ltr"] .section-header h2 {
   box-shadow: none !important;
 }
 
-/* Hero Section */
 .hero {
   padding: 180px 0 120px;
   min-height: 110vh;
@@ -703,7 +701,6 @@ h2 {
     background: #f0f0f0;
     border-color: #523263;
 }
-/* Make table scrollable on small screens */
 @media (max-width: 768px) {
   .cart-table {
     display: block;
@@ -738,7 +735,6 @@ h2 {
   }
 }
 
-/* Extra small screens */
 @media (max-width: 480px) {
   .cart-table th, 
   .cart-table td {

@@ -62,11 +62,11 @@ namespace PhoneStore.Controllers
                 .Include(o => o.DeliveryLocation)
                 .Include(o => o.OrderDetails)
                     .ThenInclude(od => od.Product)
-                        .ThenInclude(p => p.Company) // تحميل بيانات الشركة للعرض
+                        .ThenInclude(p => p.Company) 
                 .Include(o => o.OrderDetails)
                     .ThenInclude(od => od.Product)
-                        .ThenInclude(p => p.Category) // تحميل بيانات القسم للعرض
-                .FirstOrDefaultAsync(m => m.Id == id);
+                        .ThenInclude(p => p.Category) 
+                        .FirstOrDefaultAsync(m => m.Id == id);
 
             if (order == null) return NotFound();
 
@@ -111,10 +111,10 @@ namespace PhoneStore.Controllers
                 .Include(o => o.DeliveryLocation)
                 .Include(o => o.OrderDetails)
                     .ThenInclude(od => od.Product)
-                        .ThenInclude(p => p.Company) // ضروري جداً لاسم الشركة في الفاتورة
+                        .ThenInclude(p => p.Company) 
                 .Include(o => o.OrderDetails)
                     .ThenInclude(od => od.Product)
-                        .ThenInclude(p => p.Category) // ضروري جداً لاسم القسم في الفاتورة
+                        .ThenInclude(p => p.Category) 
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (order == null) return NotFound();

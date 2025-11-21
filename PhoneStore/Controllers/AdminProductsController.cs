@@ -54,7 +54,7 @@ namespace PhoneStore.Controllers
             var viewModel = new ProductViewModel
             {
                 CompanyList = await GetCompanySelectListAsync(),
-                CategoryList = await GetCategorySelectListAsync() // تعبئة قائمة الأقسام
+                CategoryList = await GetCategorySelectListAsync() 
             };
             return View(viewModel);
         }
@@ -75,7 +75,6 @@ namespace PhoneStore.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            // إعادة تعبئة القوائم في حالة الخطأ
             viewModel.CompanyList = await GetCompanySelectListAsync(viewModel.Product.CompanyId);
             viewModel.CategoryList = await GetCategorySelectListAsync(viewModel.Product.CategoryId);
             return View(viewModel);
@@ -92,7 +91,7 @@ namespace PhoneStore.Controllers
             {
                 Product = product,
                 CompanyList = await GetCompanySelectListAsync(product.CompanyId),
-                CategoryList = await GetCategorySelectListAsync(product.CategoryId) // تعبئة الأقسام
+                CategoryList = await GetCategorySelectListAsync(product.CategoryId) 
             };
 
             return View(viewModel);

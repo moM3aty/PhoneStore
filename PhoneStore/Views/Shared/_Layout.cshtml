@@ -45,14 +45,77 @@
             line-height: 1;
             border: 2px solid #fff;
         }
+
+        .footer-professional {
+            background-color: #212529;
+            color: #adb5bd;
+            padding-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+            .footer-professional h5 {
+                color: #fff;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                position: relative;
+                padding-bottom: 10px;
+            }
+
+                .footer-professional h5::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 50px;
+                    height: 2px;
+                    background-color: #513061;
+                }
+
+            .footer-professional a {
+                color: #adb5bd;
+                text-decoration: none;
+                transition: all 0.3s;
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+                .footer-professional a:hover {
+                    color: #fff;
+                    transform: translateX(-5px);
+                }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            margin-left: 10px;
+            color: #fff;
+        }
+
+            .social-links a:hover {
+                background: #513061;
+                transform: translateY(-3px);
+            }
+
+        .footer-bottom {
+            background-color: #1a1e21;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
     </style>
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body>
+    @await Component.InvokeAsync("Announcement")
+
     @Html.AntiForgeryToken()
 
-    <header id="header" class="header fixed-top">
+    <header id="header" class="header sticky-top bg-white shadow-sm">
         <nav class="navbar navbar-expand-lg px-3">
             <div class="container-fluid container-lg">
                 <a class="navbar-brand" asp-controller="Home" asp-action="Index">
@@ -72,7 +135,6 @@
                     <div class="px-lg-4">
                         <div class="icon-wrapper d-flex gap-4 py-3 py-lg-0 justify-content-center justify-content-lg-start">
                             @{
-                                // استخدام PhoneStore.Models.CartItem بدلاً من PhoneStore.Controllers.CartItem
                                 var cart = HttpContextAccessor.HttpContext.Session.GetObject<List<PhoneStore.Models.CartItem>>("_Cart") ?? new List<PhoneStore.Models.CartItem>();
                                 var cartCount = cart.Sum(c => c.Quantity);
 
@@ -106,7 +168,7 @@
         </nav>
     </header>
 
-    <main role="main">
+    <main role="main" style="min-height: 60vh;">
         @RenderBody()
     </main>
 
@@ -114,13 +176,52 @@
         <div id="toast-container"></div>
     </div>
 
-    <footer class="py-3 text-center bg-dark text-white">
+    <footer class="footer-professional">
         <div class="container">
-            <div>
-                <p>اشراف الخوالده لقطع غيار الموبايلات</p>
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-4">
+                        <img src="https://placehold.co/150x50/333/fff?text=Ashraf+Logo" alt="Logo" class="img-fluid mb-3" style="filter: brightness(0) invert(1);">
+                        <h5 class="text-white d-none">أشرف الخوالدة</h5>
+                    </div>
+                    <p class="mb-4">
+                        وجهتك الأولى لقطع غيار الموبايلات الأصلية. نضمن لك الجودة، السرعة في التوصيل، وأفضل الأسعار في السوق.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h5>روابط سريعة</h5>
+                    <a asp-controller="Home" asp-action="Index">الرئيسية</a>
+                    <a asp-controller="Store" asp-action="Index">المتجر</a>
+                    <a asp-controller="Cart" asp-action="Index">سلة التسوق</a>
+                    <a asp-controller="Order" asp-action="Index">طلباتي</a>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h5>معلومات</h5>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="about">من نحن</a>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="contact">اتصل بنا</a>
+                    <a href="#">سياسة الخصوصية</a>
+                    <a href="#">شروط الاستخدام</a>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h5>تواصل معنا</h5>
+                    <p><i class="fas fa-map-marker-alt me-2 text-white"></i> الأردن، عمان، شارع الجاردنز</p>
+                    <p><i class="fas fa-phone me-2 text-white"></i> <a href="tel:079xxxxxxx" class="d-inline text-white-50">079xxxxxxx</a></p>
+                    <p><i class="fas fa-envelope me-2 text-white"></i> info@ashrafstore.com</p>
+                </div>
             </div>
-            <div>
-                &copy; جميع الحقوق محفوظه 2025
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container text-center">
+                <p class="mb-0">&copy; @DateTime.Now.Year جميع الحقوق محفوظة | <strong>أشرف الخوالدة</strong></p>
             </div>
         </div>
     </footer>

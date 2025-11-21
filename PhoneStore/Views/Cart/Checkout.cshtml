@@ -17,9 +17,7 @@
             <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4 rounded-3 border-0 shadow-sm"></div>
 
             <div class="row g-4">
-                <!-- القسم الأيمن: بيانات التوصيل والدفع -->
                 <div class="col-lg-7 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
-                    <!-- بطاقة معلومات التوصيل -->
                     <div class="card shadow-sm border-0 rounded-3 mb-4">
                         <div class="card-header bg-white border-bottom p-3">
                             <h5 class="mb-0 fw-bold text-primary">
@@ -64,7 +62,6 @@
                         </div>
                     </div>
 
-                    <!-- بطاقة طريقة الدفع -->
                     <div class="card shadow-sm border-0 rounded-3">
                         <div class="card-header bg-white border-bottom p-3">
                             <h5 class="mb-0 fw-bold text-primary">
@@ -99,7 +96,6 @@
                     </div>
                 </div>
 
-                <!-- القسم الأيسر: ملخص الطلب -->
                 <div class="col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
                     <div class="card shadow border-0 rounded-3 position-sticky" style="top: 100px;">
                         <div class="card-header bg-primary text-white p-3">
@@ -108,7 +104,6 @@
                             </h5>
                         </div>
                         <div class="card-body p-0">
-                            <!-- قائمة المنتجات -->
                             <div class="products-list p-3" style="max-height: 300px; overflow-y: auto;">
                                 @foreach (var item in Model.CartSummary.CartItems)
                                 {
@@ -133,7 +128,6 @@
                                 }
                             </div>
 
-                            <!-- الحسابات -->
                             <div class="bg-light p-4 rounded-bottom-3">
                                 <div class="d-flex justify-content-between mb-2">
                                     <span class="text-muted">المجموع الفرعي</span>
@@ -167,7 +161,6 @@
 </section>
 
 <style>
-    /* ستايل خاص لخيارات الدفع */
     .payment-option-card {
         cursor: pointer;
         transition: all 0.3s ease;
@@ -176,8 +169,8 @@
 
     .payment-option-label input:checked + .payment-option-card {
         border-color: var(--bs-primary) !important;
-        background-color: #f0f4ff; /* خلفية زرقاء فاتحة جداً */
-        box-shadow: 0 0 0 2px rgba(81, 48, 97, 0.2); /* تأثير الظل حول البطاقة */
+        background-color: #f0f4ff; 
+        box-shadow: 0 0 0 2px rgba(81, 48, 97, 0.2); 
     }
 
     .payment-option-label:hover .payment-option-card {
@@ -185,7 +178,6 @@
         box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     }
 
-    /* تحسينات عامة */
     .last-no-border:last-child {
         border-bottom: 0 !important;
         padding-bottom: 0 !important;
@@ -200,7 +192,6 @@
             transform: translateY(-2px);
         }
 
-    /* تخصيص لون الـ Primary ليتماشى مع هوية المتجر */
     .text-primary {
         color: #513061 !important;
     }

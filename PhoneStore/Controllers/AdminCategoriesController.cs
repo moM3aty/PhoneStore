@@ -18,7 +18,6 @@ namespace PhoneStore.Controllers
             _context = context;
         }
 
-        // تم التعديل: إضافة البحث والترتيب التنازلي
         public async Task<IActionResult> Index(string searchString)
         {
             var categories = _context.Categories.Include(c => c.Products).AsQueryable();
@@ -30,7 +29,6 @@ namespace PhoneStore.Controllers
 
             ViewData["CurrentFilter"] = searchString;
 
-            // الترتيب التنازلي
             return View(await categories.OrderByDescending(c => c.Id).ToListAsync());
         }
 

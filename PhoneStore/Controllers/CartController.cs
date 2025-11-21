@@ -30,7 +30,6 @@ namespace PhoneStore.Controllers
             _context = context;
         }
 
-        // --- دوال مساعدة للتعامل مع كوكيز المفضلة ---
         private List<int> GetWishlistFromCookie()
         {
             var cookie = Request.Cookies[WishlistCookieKey];
@@ -55,7 +54,6 @@ namespace PhoneStore.Controllers
             };
             Response.Cookies.Append(WishlistCookieKey, JsonSerializer.Serialize(wishlist), options);
         }
-        // ------------------------------------------------
 
         public async Task<IActionResult> Index()
         {

@@ -33,7 +33,6 @@
             padding: 20px;
         }
 
-        /* Header */
         .invoice-header {
             display: flex;
             justify-content: space-between;
@@ -62,7 +61,6 @@
             margin-bottom: 5px;
         }
 
-        /* Info Grid */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -85,7 +83,7 @@
             font-weight: 600;
         }
 
-        /* Table */
+        
         .invoice-table {
             width: 100%;
             border-collapse: collapse;
@@ -126,7 +124,7 @@
             color: #6c757d;
         }
 
-        /* Totals */
+
         .totals-container {
             display: flex;
             justify-content: flex-end;
@@ -156,7 +154,6 @@
                 padding-top: 15px;
             }
 
-        /* Footer */
         .invoice-footer {
             margin-top: 50px;
             text-align: center;
@@ -185,7 +182,6 @@
 
     <div class="container invoice-container">
 
-        <!-- أزرار الطباعة -->
         <div class="text-center mb-4 no-print">
             <button onclick="window.print()" class="btn btn-primary px-4 rounded-pill shadow-sm">
                 <i class="fas fa-print me-2"></i> طباعة الفاتورة
@@ -195,7 +191,6 @@
             </button>
         </div>
 
-        <!-- رأس الفاتورة -->
         <header class="invoice-header">
             <div class="company-logo">
                 <h1>أشرف الخوالدة</h1>
@@ -208,7 +203,6 @@
             </div>
         </header>
 
-        <!-- معلومات الفاتورة -->
         <div class="info-grid">
             <div class="info-box">
                 <h5>تفاصيل العميل</h5>
@@ -231,7 +225,6 @@
             </div>
         </div>
 
-        <!-- جدول المنتجات -->
         <table class="invoice-table">
             <thead>
                 <tr>
@@ -269,7 +262,6 @@
             </tbody>
         </table>
 
-        <!-- الإجماليات -->
         <div class="totals-container">
             <table class="totals-table">
                 <tr>
@@ -287,7 +279,6 @@
             </table>
         </div>
 
-        <!-- التذييل -->
         <footer class="invoice-footer">
             <p>شكراً لتعاملك معنا!</p>
             <p>في حالة وجود أي استفسار يرجى التواصل معنا على الرقم: 079xxxxxxx</p>

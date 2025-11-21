@@ -36,7 +36,7 @@ namespace PhoneStore.Controllers
             {
                 _context.Add(deliveryLocation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index)); // تم حذف المفتاح
+                return RedirectToAction(nameof(Index)); 
             }
             return View(deliveryLocation);
         }
@@ -69,7 +69,7 @@ namespace PhoneStore.Controllers
                     else
                         throw;
                 }
-                return RedirectToAction(nameof(Index)); // تم حذف المفتاح
+                return RedirectToAction(nameof(Index));
             }
             return View(deliveryLocation);
         }
@@ -92,9 +92,8 @@ namespace PhoneStore.Controllers
                 _context.DeliveryLocations.Remove(location);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToAction(nameof(Index)); // تم حذف المفتاح
+            return RedirectToAction(nameof(Index)); 
         }
 
-        // تم حذف دالة GetAdminKey()
     }
 }

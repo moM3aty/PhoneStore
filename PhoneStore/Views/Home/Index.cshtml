@@ -4,28 +4,22 @@
 @{
     ViewData["Title"] = "الرئيسية";
 
-    // --- المنطق الجديد للعرض العشوائي والذكي ---
 
-    // 1. نفصل الشركات التي تحتوي على منتجات عن التي لا تحتوي
     var companiesWithProducts = Model.Where(c => c.Products != null && c.Products.Any()).ToList();
     var companiesWithoutProducts = Model.Where(c => c.Products == null || !c.Products.Any()).ToList();
 
-    // 2. نخلط القوائم عشوائياً في كل مرة (Randomize)
     var random = new Random();
     companiesWithProducts = companiesWithProducts.OrderBy(x => random.Next()).ToList();
     companiesWithoutProducts = companiesWithoutProducts.OrderBy(x => random.Next()).ToList();
 
-    // 3. نجمع القائمة النهائية: الأولوية للي فيها منتجات
     var finalCompaniesList = new List<PhoneStore.Models.Company>();
     finalCompaniesList.AddRange(companiesWithProducts);
 
-    // إذا لم يكتمل العدد لـ 4، نأخذ من الشركات الفارغة
     if (finalCompaniesList.Count < 4)
     {
         finalCompaniesList.AddRange(companiesWithoutProducts.Take(4 - finalCompaniesList.Count));
     }
 
-    // نأخذ أول 4 فقط للعرض
     var topCompanies = finalCompaniesList.Take(4).ToList();
 }
 
@@ -88,14 +82,12 @@
 
             @foreach (var company in topCompanies)
             {
-                // كود لجلب صورة عشوائية لأي منتج داخل الشركة
                 var randomProductImage = company.Products
                 .Where(p => !string.IsNullOrEmpty(p.ImageUrl))
                 .OrderBy(x => Guid.NewGuid())
                 .Select(p => p.ImageUrl)
                 .FirstOrDefault();
 
-                // إذا لم توجد منتجات لها صور، نستخدم لوجو الشركة، وإلا صورة افتراضية
                 var displayImage = randomProductImage ??
                 company.ImageUrl ??
                 $"https://placehold.co/300x400/EEE/513061?text={company.Name}";
@@ -103,7 +95,6 @@
                 <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
                     <div class="product-card">
                         <div class="product-img img-2">
-                            <!-- عرض الصورة بارتفاع ثابت وملاءمة (Contain) لضمان ظهورها كاملة -->
                             <img src="@displayImage" alt="@company.Name" style="width: 100%; height: 250px; object-fit: contain;">
                         </div>
                         <div class="product-info align-items-center">
@@ -196,7 +187,7 @@
             <div class="col-12" data-aos="fade-up" data-aos-delay="100">
                 <div class="content mb-4">
                     <p class="text-muted fw-medium">
-                        <strong>التوصيل داخل عمان خلال ساعة ونصف، وخارج عمان يتم في اليوم التالي.</strong>
+                        <strong>توصيل فوري</strong>
                     </p>
                 </div>
             </div>
@@ -205,7 +196,7 @@
                 <div class="row g-4">
                     <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="card py-3 px-4 d-flex align-items-center justify-content-center h-100">
-                            <h3>جميع البضائع مقفولة قبل التركيب لضمان الجودة والأمان.</h3>
+                            <h3>جميع البضائع مكفولة قبل التركيب لضمان الجودة والأمان.</h3>
                             <p class="text-center text-muted fw-medium">
                                 نحن نقدم دعم فوري لأي استفسار أو تعديل تحتاجه، فريقنا متواجد للرد مباشرة عبر الهاتف
                                 أو

@@ -1,5 +1,4 @@
 ﻿@{
-    // لا نحتاج المفتاح السري هنا بعد الآن
 }
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -14,7 +13,6 @@
 </head>
 <body>
     <div class="d-flex" id="wrapper">
-        <!-- القائمة الجانبية -->
         <div id="sidebar-wrapper">
             <div class="sidebar-heading">
                 <a asp-controller="Admin" asp-action="Index">لوحة التحكم</a>
@@ -32,7 +30,6 @@
                    asp-route-controller="AdminProducts">
                     <i class="fas fa-mobile-alt fa-fw me-2"></i> إدارة المنتجات
                 </a>
-                <!-- رابط الأقسام الجديد -->
                 <a asp-controller="AdminCategories" asp-action="Index" class="list-group-item list-group-item-action"
                    asp-route-controller="AdminCategories">
                     <i class="fas fa-tags fa-fw me-2"></i> إدارة الأقسام
@@ -45,13 +42,16 @@
                    asp-route-controller="AdminLocations">
                     <i class="fas fa-map-marked-alt fa-fw me-2"></i> مناطق التوصيل
                 </a>
+                <a asp-controller="AdminAnnouncements" asp-action="Index" class="list-group-item list-group-item-action"
+                   asp-route-controller="AdminAnnouncements">
+                    <i class="fas fa-bullhorn fa-fw me-2"></i> شريط الإعلانات
+                </a>
                 <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action">
                     <i class="fas fa-store fa-fw me-2"></i> العودة للمتجر
                 </a>
             </div>
         </div>
 
-        <!-- محتوى الصفحة -->
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div class="container-fluid">
@@ -77,13 +77,11 @@
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // تفعيل/إلغاء القائمة الجانبية
             document.getElementById("menu-toggle").addEventListener("click", function (e) {
                 e.preventDefault();
                 document.getElementById("wrapper").classList.toggle("toggled");
             });
 
-            // تفعيل الرابط النشط في القائمة الجانبية
             var currentController = "@ViewContext.RouteData.Values["controller"]?.ToString()";
             var currentAction = "@ViewContext.RouteData.Values["action"]?.ToString()";
 

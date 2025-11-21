@@ -17,7 +17,6 @@
                 {
                     <li class="breadcrumb-item"><a asp-action="Index" asp-route-companyId="@Model.CompanyId">@Model.Company.Name</a></li>
                 }
-                <!-- تصحيح: استخدام Model.Category بدلاً من النص -->
                 @if (Model.Category != null)
                 {
                     <li class="breadcrumb-item"><a asp-action="Index" asp-route-categoryId="@Model.CategoryId">@Model.Category.Name</a></li>
@@ -27,7 +26,6 @@
         </nav>
 
         <div class="row g-5 align-items-center">
-            <!-- صورة المنتج -->
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
                 <div class="product-details-img border rounded-4 overflow-hidden position-relative bg-white shadow-sm">
                     @if (Model.DiscountPercentage > 0)
@@ -44,11 +42,9 @@
                 </div>
             </div>
 
-            <!-- تفاصيل المنتج -->
             <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
                 <div class="product-details-content ps-lg-4">
                     <h6 class="text-uppercase text-muted fw-bold mb-2">
-                        <!-- تصحيح الخطأ هنا: استبدال string.IsNullOrEmpty بفحص الـ null وعرض الاسم -->
                         @(Model.Company?.Name ?? "عام") @(Model.Category != null ? $" / {Model.Category.Name}" : "")
                     </h6>
                     <h1 class="fw-bold mb-3">@Model.Name</h1>
