@@ -237,14 +237,21 @@
             <tbody>
                 @if (Model.OrderDetails != null && Model.OrderDetails.Any())
                 {
-                    foreach (var item in Model.OrderDetails)
+                    @foreach (var item in Model.OrderDetails)
                     {
                         <tr>
                             <td>
                                 <div class="product-name">@(item.Product?.Name ?? "منتج غير معروف")</div>
                                 <div class="product-meta">
                                     @(item.Product?.Company?.Name ?? "")
-                                    @(item.Product?.Category != null ? " - " + item.Product.Category.Name : "")
+                                    @if (!string.IsNullOrEmpty(item.SelectedColor))
+                                    {
+                                        <span> | اللون: @item.SelectedColor</span>
+                                    }
+                                    @if (!string.IsNullOrEmpty(item.SelectedType))
+                                    {
+                                        <span> | النوع: @item.SelectedType</span>
+                                    }
                                 </div>
                             </td>
                             <td>@item.UnitPrice.ToString("C", culture)</td>

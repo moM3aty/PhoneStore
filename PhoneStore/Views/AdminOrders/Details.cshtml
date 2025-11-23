@@ -57,7 +57,13 @@
                                                 </div>
                                                 <div class="flex-grow-1 ms-3">
                                                     <h6 class="mb-0 fw-semibold text-dark">@item.Product.Name</h6>
-                                                    <small class="text-muted">@item.Product.Company?.Name</small>
+                                                    <small class="text-muted d-block">@item.Product.Company?.Name</small>
+                                                    @if (!string.IsNullOrEmpty(item.SelectedColor) || !string.IsNullOrEmpty(item.SelectedType))
+                                                    {
+                                                        <span class="badge bg-light text-dark border mt-1">
+                                                            @(item.SelectedColor) @(!string.IsNullOrEmpty(item.SelectedType) ? $"- {item.SelectedType}" : "")
+                                                        </span>
+                                                    }
                                                 </div>
                                             </div>
                                         </td>

@@ -26,5 +26,8 @@ namespace PhoneStore.Models
         [Column(TypeName = "decimal(18, 2)")]
         [Display(Name = "سعر الوحدة (وقت الشراء)")]
         public decimal UnitPrice { get; set; }
+
+        public string? SelectedColor { get; set; }
+        public string? SelectedType { get; set; }
     }
 }

@@ -97,8 +97,52 @@
                 target.disabled = false;
                 target.innerHTML = originalContent;
             });
-    });
+    }); document.body.addEventListener('click', function (e) {
+        const target = e.target.closest('.btn-add-to-cart-detailed'); // زر جديد للصفحة التفصيلية
+        if (!target) return;
 
+        e.preventDefault();
+        const productId = target.dataset.id;
+
+        // جلب الخيارات المختارة
+        const colorSelect = document.getElementById('selectedColor');
+        const typeSelect = document.getElementById('selectedType');
+
+        const selectedColor = colorSelect ? colorSelect.value : null;
+        const selectedType = typeSelect ? typeSelect.value : null;
+
+        const originalContent = target.innerHTML;
+        target.disabled = true;
+        target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإضافة...';
+
+        fetch('/Cart/AddToCart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': getToken()
+            },
+            body: JSON.stringify({
+                Id: parseInt(productId),
+                Quantity: 1,
+                Color: selectedColor,
+                Type: selectedType
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    showToast(data.message);
+                    updateCartIcon(data.count);
+                } else {
+                    showToast(data.message || "حدث خطأ", true);
+                }
+            })
+            .catch(() => showToast("حدث خطأ في الاتصال", true))
+            .finally(() => {
+                target.disabled = false;
+                target.innerHTML = originalContent;
+            });
+    });
     document.body.addEventListener('click', function (e) {
         const target = e.target.closest('.btn-toggle-wishlist');
         if (!target) return;

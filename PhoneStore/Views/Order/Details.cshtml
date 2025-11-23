@@ -42,8 +42,14 @@
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <img src="@(string.IsNullOrEmpty(item.Product.ImageUrl) ? $"https://placehold.co/60x60/EEE/513061?text=No+Image" : item.Product.ImageUrl)" alt="@item.Product.Name" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;" />
-                                                    <span class="ms-3">@item.Product.Name</span>
+                                                    <img src="@(string.IsNullOrEmpty(item.Product.ImageUrl) ? "https://placehold.co/60x60/EEE/513061?text=No+Image" : item.Product.ImageUrl)" alt="@item.Product.Name" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;" />
+                                                    <div class="ms-3">
+                                                        <span class="d-block fw-bold">@item.Product.Name</span>
+                                                        <small class="text-muted">
+                                                            @(string.IsNullOrEmpty(item.SelectedColor) ? "" : $"اللون: {item.SelectedColor}")
+                                                            @(string.IsNullOrEmpty(item.SelectedType) ? "" : $" | النوع: {item.SelectedType}")
+                                                        </small>
+                                                    </div>
                                                 </div>
                                             </td>
                                             <td>@item.UnitPrice.ToString("C", culture)</td>

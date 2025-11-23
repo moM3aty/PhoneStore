@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhoneStore.Data;
 
@@ -11,9 +12,11 @@ using PhoneStore.Data;
 namespace PhoneStore.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251123210546_AddProductOptions")]
+    partial class AddProductOptions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,12 +164,6 @@ namespace PhoneStore.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("SelectedColor")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SelectedType")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(18, 2)");
 
@@ -218,50 +215,6 @@ namespace PhoneStore.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("PhoneStore.Models.ProductColor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ColorName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("productColors");
-                });
-
-            modelBuilder.Entity("PhoneStore.Models.ProductType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("productTypes");
-                });
-
             modelBuilder.Entity("PhoneStore.Models.Order", b =>
                 {
                     b.HasOne("PhoneStore.Models.DeliveryLocation", "DeliveryLocation")
@@ -311,28 +264,6 @@ namespace PhoneStore.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("PhoneStore.Models.ProductColor", b =>
-                {
-                    b.HasOne("PhoneStore.Models.Product", "Product")
-                        .WithMany("Colors")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("PhoneStore.Models.ProductType", b =>
-                {
-                    b.HasOne("PhoneStore.Models.Product", "Product")
-                        .WithMany("Types")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("PhoneStore.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -346,13 +277,6 @@ namespace PhoneStore.Migrations
             modelBuilder.Entity("PhoneStore.Models.Order", b =>
                 {
                     b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("PhoneStore.Models.Product", b =>
-                {
-                    b.Navigation("Colors");
-
-                    b.Navigation("Types");
                 });
 #pragma warning restore 612, 618
         }

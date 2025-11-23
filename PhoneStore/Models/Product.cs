@@ -39,6 +39,9 @@ namespace PhoneStore.Models
         [ForeignKey("CompanyId")]
         public virtual Company? Company { get; set; }
 
+        public virtual ICollection<ProductColor> Colors { get; set; } = new List<ProductColor>();
+        public virtual ICollection<ProductType> Types { get; set; } = new List<ProductType>();
+
         [NotMapped]
         public int DiscountPercentage
         {

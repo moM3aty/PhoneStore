@@ -26,6 +26,7 @@
         </nav>
 
         <div class="row g-5 align-items-center">
+            <!-- صورة المنتج -->
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
                 <div class="product-details-img border rounded-4 overflow-hidden position-relative bg-white shadow-sm">
                     @if (Model.DiscountPercentage > 0)
@@ -42,6 +43,7 @@
                 </div>
             </div>
 
+            <!-- تفاصيل المنتج -->
             <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
                 <div class="product-details-content ps-lg-4">
                     <h6 class="text-uppercase text-muted fw-bold mb-2">
@@ -52,13 +54,41 @@
                     <div class="mb-4">
                         @if (Model.OldPrice.HasValue && Model.OldPrice > Model.Price)
                         {
-                            <span class="text-danger fs-2 fw-bold me-2">@Model.Price د.أ</span>
-                            <span class="fs-2 fw-bold me-2"> </span>
-                            <span class="text-muted text-decoration-line-through fs-5 mx-3"> @Model.OldPrice.Value </span>
+                            <span class="text-danger fs-2 fw-bold me-2">@Model.Price.ToString("C", culture)</span>
+                            <span class="text-muted text-decoration-line-through fs-5">@Model.OldPrice.Value.ToString("C", culture)</span>
                         }
                         else
                         {
-                            <span class="fs-2 fw-bold text-primary">@Model.Price د.أ</span>
+                            <span class="fs-2 fw-bold text-primary">@Model.Price.ToString("C", culture)</span>
+                        }
+                    </div>
+
+                    <!-- خيارات المنتج -->
+                    <div class="product-options mb-4">
+                        @if (Model.Colors != null && Model.Colors.Any())
+                        {
+                            <div class="mb-3">
+                                <label class="fw-bold mb-2">اختر اللون:</label>
+                                <select id="selectedColor" class="form-select">
+                                    @foreach (var color in Model.Colors)
+                                    {
+                                        <option value="@color.ColorName">@color.ColorName</option>
+                                    }
+                                </select>
+                            </div>
+                        }
+
+                        @if (Model.Types != null && Model.Types.Any())
+                        {
+                            <div class="mb-3">
+                                <label class="fw-bold mb-2">اختر النوع/الموديل:</label>
+                                <select id="selectedType" class="form-select">
+                                    @foreach (var type in Model.Types)
+                                    {
+                                        <option value="@type.TypeName">@type.TypeName</option>
+                                    }
+                                </select>
+                            </div>
                         }
                     </div>
 
@@ -74,7 +104,7 @@
                     </p>
 
                     <div class="d-flex gap-3 mt-5">
-                        <button class="btn btn-success btn-lg px-5 flex-grow-1 btn-add-to-cart" data-id="@Model.Id">
+                        <button class="btn btn-success btn-lg px-5 flex-grow-1 btn-add-to-cart-detailed" data-id="@Model.Id">
                             <i class="fas fa-cart-plus me-2"></i> أضف إلى السلة
                         </button>
 
@@ -106,4 +136,4 @@
             </div>
         </div>
     </div>
-</section>  
+</section>

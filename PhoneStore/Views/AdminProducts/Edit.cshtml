@@ -39,14 +39,14 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label asp-for="Product.Price" class="form-label"></label>
-                                        <input asp-for="Product.Price" class="form-control" />
+                                        <input asp-for="Product.Price" class="form-control" type="number" step="0.01" />
                                         <span asp-validation-for="Product.Price" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label asp-for="Product.OldPrice" class="form-label"></label>
-                                        <input asp-for="Product.OldPrice" class="form-control" />
+                                        <input asp-for="Product.OldPrice" class="form-control" type="number" step="0.01" />
                                         <span asp-validation-for="Product.OldPrice" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -69,6 +69,30 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- خيارات المنتج -->
+                            <div class="card bg-light border mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-3 text-primary">خيارات المنتج</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label asp-for="ColorsInput" class="form-label"></label>
+                                                <input asp-for="ColorsInput" class="form-control" />
+                                                <small class="text-muted">افصل بين الألوان بفاصلة (,)</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label asp-for="TypesInput" class="form-label"></label>
+                                                <input asp-for="TypesInput" class="form-control" />
+                                                <small class="text-muted">افصل بين الأنواع بفاصلة (,)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3 text-center">

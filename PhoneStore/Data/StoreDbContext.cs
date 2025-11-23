@@ -16,5 +16,7 @@ namespace PhoneStore.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<DeliveryLocation> DeliveryLocations { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<ProductColor> productColors { get; set; }
+        public DbSet<ProductType> productTypes { get; set; }
     }
 }

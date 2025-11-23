@@ -1,0 +1,589 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PhoneStore.bundle.scp.css",
+      "PackagePath": "staticwebassets\\PhoneStore.b17xfyllu3.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\css\\admin.css",
+      "PackagePath": "staticwebassets\\css\\admin.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\css\\all.min.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\css\\main.css",
+      "PackagePath": "staticwebassets\\css\\main.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\Black-Shark.jpg",
+      "PackagePath": "staticwebassets\\images\\Black-Shark.jpg"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\Hisense.png",
+      "PackagePath": "staticwebassets\\images\\Hisense.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\Honor.svg",
+      "PackagePath": "staticwebassets\\images\\Honor.svg"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\Itel-mobile-logo-vector.svg.png",
+      "PackagePath": "staticwebassets\\images\\Itel-mobile-logo-vector.svg.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\OnePlus-Logo.png",
+      "PackagePath": "staticwebassets\\images\\OnePlus-Logo.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\Oppo-Logo.svg",
+      "PackagePath": "staticwebassets\\images\\Oppo-Logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\POCO-logo.svg.png",
+      "PackagePath": "staticwebassets\\images\\POCO-logo.svg.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\Samsung_logo.png",
+      "PackagePath": "staticwebassets\\images\\Samsung_logo.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\Vivo-Logo.png",
+      "PackagePath": "staticwebassets\\images\\Vivo-Logo.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\Xiaomi-Logo.png",
+      "PackagePath": "staticwebassets\\images\\Xiaomi-Logo.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\ZTE.png",
+      "PackagePath": "staticwebassets\\images\\ZTE.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\alcatel.png",
+      "PackagePath": "staticwebassets\\images\\alcatel.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\all-call.png",
+      "PackagePath": "staticwebassets\\images\\all-call.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\apple.png",
+      "PackagePath": "staticwebassets\\images\\apple.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\black-shark.png",
+      "PackagePath": "staticwebassets\\images\\black-shark.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\06b20a4a-3c66-4b75-9af3-88dfbbdc1de8.webp",
+      "PackagePath": "staticwebassets\\images\\companies\\06b20a4a-3c66-4b75-9af3-88dfbbdc1de8.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\0f2e9c39-9aec-493e-81a7-f8e97733661e.png",
+      "PackagePath": "staticwebassets\\images\\companies\\0f2e9c39-9aec-493e-81a7-f8e97733661e.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\213e64c8-6452-4d40-b000-cb7702ee256a.png",
+      "PackagePath": "staticwebassets\\images\\companies\\213e64c8-6452-4d40-b000-cb7702ee256a.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\27f51ebd-d425-4c34-98e1-5a4ddb97a64d.svg",
+      "PackagePath": "staticwebassets\\images\\companies\\27f51ebd-d425-4c34-98e1-5a4ddb97a64d.svg"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\28439025-579b-45b9-8f00-2b6b6b0c68db.png",
+      "PackagePath": "staticwebassets\\images\\companies\\28439025-579b-45b9-8f00-2b6b6b0c68db.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\2ec5cb83-29ca-4f0f-969c-29681c792c89.png",
+      "PackagePath": "staticwebassets\\images\\companies\\2ec5cb83-29ca-4f0f-969c-29681c792c89.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\38723c3e-7057-4285-8496-3514c4b1a44e.svg",
+      "PackagePath": "staticwebassets\\images\\companies\\38723c3e-7057-4285-8496-3514c4b1a44e.svg"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\3b47b1e5-c443-4e31-b176-b464ecab5433.png",
+      "PackagePath": "staticwebassets\\images\\companies\\3b47b1e5-c443-4e31-b176-b464ecab5433.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\3ff90924-43dc-4754-9db7-67547446e3c8.png",
+      "PackagePath": "staticwebassets\\images\\companies\\3ff90924-43dc-4754-9db7-67547446e3c8.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\61e9b2a7-2bd6-4d2b-a693-baef2d88ea84.png",
+      "PackagePath": "staticwebassets\\images\\companies\\61e9b2a7-2bd6-4d2b-a693-baef2d88ea84.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\7dec8539-ce1d-42b9-8163-b3604fb38972.png",
+      "PackagePath": "staticwebassets\\images\\companies\\7dec8539-ce1d-42b9-8163-b3604fb38972.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\8cce2dea-a511-4b81-845d-94c9f9d28ee8.webp",
+      "PackagePath": "staticwebassets\\images\\companies\\8cce2dea-a511-4b81-845d-94c9f9d28ee8.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\8d1bf23c-5213-4708-883b-889094f35f2c.png",
+      "PackagePath": "staticwebassets\\images\\companies\\8d1bf23c-5213-4708-883b-889094f35f2c.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\93fda3d6-b3c9-4e8b-a24d-ac01ca82da4d.webp",
+      "PackagePath": "staticwebassets\\images\\companies\\93fda3d6-b3c9-4e8b-a24d-ac01ca82da4d.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\99cd96c5-d89d-4db8-815b-4de7aa84abee.png",
+      "PackagePath": "staticwebassets\\images\\companies\\99cd96c5-d89d-4db8-815b-4de7aa84abee.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\a6efd858-31e1-4436-9cec-475ad0870808.jpg",
+      "PackagePath": "staticwebassets\\images\\companies\\a6efd858-31e1-4436-9cec-475ad0870808.jpg"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\b2cb812f-ce09-40c0-8b76-4707cfbd969d.png",
+      "PackagePath": "staticwebassets\\images\\companies\\b2cb812f-ce09-40c0-8b76-4707cfbd969d.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\bd0a09a9-29d8-4579-82c9-54f04abeb1f3.png",
+      "PackagePath": "staticwebassets\\images\\companies\\bd0a09a9-29d8-4579-82c9-54f04abeb1f3.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\c092a3a7-7101-4e68-a9f7-f52d5c339be5.png",
+      "PackagePath": "staticwebassets\\images\\companies\\c092a3a7-7101-4e68-a9f7-f52d5c339be5.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\e1893d97-9106-4374-8897-ec5125d82b82.png",
+      "PackagePath": "staticwebassets\\images\\companies\\e1893d97-9106-4374-8897-ec5125d82b82.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\e7b6183b-5552-47f6-a426-2d721f528dd0.webp",
+      "PackagePath": "staticwebassets\\images\\companies\\e7b6183b-5552-47f6-a426-2d721f528dd0.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\e93df1de-043c-4039-96c5-331afb580c5d.png",
+      "PackagePath": "staticwebassets\\images\\companies\\e93df1de-043c-4039-96c5-331afb580c5d.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\e97b8bce-0c42-49c6-824a-969d5fc5f4a7.png",
+      "PackagePath": "staticwebassets\\images\\companies\\e97b8bce-0c42-49c6-824a-969d5fc5f4a7.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\companies\\f92d84ea-ddeb-4645-8fe5-20f70072c01c.webp",
+      "PackagePath": "staticwebassets\\images\\companies\\f92d84ea-ddeb-4645-8fe5-20f70072c01c.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\header-1.jpg",
+      "PackagePath": "staticwebassets\\images\\header-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\header.jpg",
+      "PackagePath": "staticwebassets\\images\\header.jpg"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\huawei.png",
+      "PackagePath": "staticwebassets\\images\\huawei.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\img-1.webp",
+      "PackagePath": "staticwebassets\\images\\img-1.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\img-2.webp",
+      "PackagePath": "staticwebassets\\images\\img-2.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\img-3.webp",
+      "PackagePath": "staticwebassets\\images\\img-3.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\img-4.webp",
+      "PackagePath": "staticwebassets\\images\\img-4.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\img-5.webp",
+      "PackagePath": "staticwebassets\\images\\img-5.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\img-6.webp",
+      "PackagePath": "staticwebassets\\images\\img-6.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\infinix-logo-hd.webp",
+      "PackagePath": "staticwebassets\\images\\infinix-logo-hd.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\iphone.png",
+      "PackagePath": "staticwebassets\\images\\iphone.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\kgtel.webp",
+      "PackagePath": "staticwebassets\\images\\kgtel.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\kxd.avif",
+      "PackagePath": "staticwebassets\\images\\kxd.avif"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\lenovo.png",
+      "PackagePath": "staticwebassets\\images\\lenovo.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\motorola-logo-png-transparent.png",
+      "PackagePath": "staticwebassets\\images\\motorola-logo-png-transparent.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\nokia.png",
+      "PackagePath": "staticwebassets\\images\\nokia.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\pixel.webp",
+      "PackagePath": "staticwebassets\\images\\pixel.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\products\\4be74b4e-ba46-41b2-9e94-5740c81704ed.png",
+      "PackagePath": "staticwebassets\\images\\products\\4be74b4e-ba46-41b2-9e94-5740c81704ed.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\products\\948e76fc-6932-4149-98ff-f28852db5ea4.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\948e76fc-6932-4149-98ff-f28852db5ea4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\samsung.png",
+      "PackagePath": "staticwebassets\\images\\samsung.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\shop-header.webp",
+      "PackagePath": "staticwebassets\\images\\shop-header.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\sony.jpg",
+      "PackagePath": "staticwebassets\\images\\sony.jpg"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\sony.png",
+      "PackagePath": "staticwebassets\\images\\sony.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\tcl.webp",
+      "PackagePath": "staticwebassets\\images\\tcl.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\tecno-mobile-logo-icon.webp",
+      "PackagePath": "staticwebassets\\images\\tecno-mobile-logo-icon.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\xiaomi.png",
+      "PackagePath": "staticwebassets\\images\\xiaomi.png"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\images\\xiaomi.webp",
+      "PackagePath": "staticwebassets\\images\\xiaomi.webp"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\js\\main.js",
+      "PackagePath": "staticwebassets\\js\\main.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\js\\parts.js",
+      "PackagePath": "staticwebassets\\js\\parts.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\webfonts\\fa-v4compatibility.ttf",
+      "PackagePath": "staticwebassets\\webfonts\\fa-v4compatibility.ttf"
+    },
+    {
+      "Id": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\wwwroot\\webfonts\\fa-v4compatibility.woff2",
+      "PackagePath": "staticwebassets\\webfonts\\fa-v4compatibility.woff2"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PhoneStore.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PhoneStore.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.PhoneStore.props",
+      "PackagePath": "build\\PhoneStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.PhoneStore.props",
+      "PackagePath": "buildMultiTargeting\\PhoneStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.PhoneStore.props",
+      "PackagePath": "buildTransitive\\PhoneStore.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

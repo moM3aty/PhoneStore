@@ -119,7 +119,17 @@
                                         </div>
                                         <div class="flex-grow-1 ms-3">
                                             <h6 class="mb-0 fw-bold text-dark">@item.Product.Name</h6>
-                                            <small class="text-muted">@item.Product.Company?.Name</small>
+
+                                            <div class="small text-muted mt-1">
+                                                @if (!string.IsNullOrEmpty(item.SelectedColor))
+                                                {
+                                                    <span class="me-2"><i class="fas fa-circle fa-xs text-secondary me-1"></i>@item.SelectedColor</span>
+                                                }
+                                                @if (!string.IsNullOrEmpty(item.SelectedType))
+                                                {
+                                                    <span><i class="fas fa-tag fa-xs text-secondary me-1"></i>@item.SelectedType</span>
+                                                }
+                                            </div>
                                         </div>
                                         <div class="text-end">
                                             <span class="fw-bold text-primary">@item.Subtotal.ToString("C", culture)</span>
@@ -127,7 +137,6 @@
                                     </div>
                                 }
                             </div>
-
                             <div class="bg-light p-4 rounded-bottom-3">
                                 <div class="d-flex justify-content-between mb-2">
                                     <span class="text-muted">المجموع الفرعي</span>

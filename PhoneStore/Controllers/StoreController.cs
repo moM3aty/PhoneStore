@@ -75,6 +75,8 @@ namespace PhoneStore.Controllers
             var product = await _context.Products
                 .Include(p => p.Company)
                 .Include(p => p.Category)
+                .Include(p => p.Colors) 
+                .Include(p => p.Types)  
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (product == null) return NotFound();
@@ -85,4 +87,4 @@ namespace PhoneStore.Controllers
             return View(product);
         }
     }
-}
+}   
