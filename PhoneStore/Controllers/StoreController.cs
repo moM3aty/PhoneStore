@@ -32,12 +32,18 @@ namespace PhoneStore.Controllers
             }
         }
 
-        public async Task<IActionResult> Index(int? companyId, int? categoryId)
+        public async Task<IActionResult> Index(int? companyId, int? categoryId, string searchString)
         {
             var productsQuery = _context.Products
                                         .Include(p => p.Company)
                                         .Include(p => p.Category)
                                         .AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                productsQuery = productsQuery.Where(p => p.Name.Contains(searchString) ||
+                                                         (p.Description != null && p.Description.Contains(searchString)));
+            }
 
             if (companyId.HasValue)
             {
@@ -62,7 +68,8 @@ namespace PhoneStore.Controllers
                 Categories = categories,
                 SelectedCompanyId = companyId,
                 SelectedCategoryId = categoryId,
-                WishlistIds = wishlistIds 
+                SearchString = searchString, 
+                WishlistIds = wishlistIds
             };
 
             return View(viewModel);
@@ -75,8 +82,8 @@ namespace PhoneStore.Controllers
             var product = await _context.Products
                 .Include(p => p.Company)
                 .Include(p => p.Category)
-                .Include(p => p.Colors) 
-                .Include(p => p.Types)  
+                .Include(p => p.Colors)
+                .Include(p => p.Types)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (product == null) return NotFound();
@@ -87,4 +94,4 @@ namespace PhoneStore.Controllers
             return View(product);
         }
     }
-}   
+}

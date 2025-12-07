@@ -4110,23 +4110,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\M3aty\\.nuget\\packages\\": {},
+    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\PhoneStore.csproj",
+      "projectUniqueName": "D:\\Dev\\PhoneStore\\PhoneStore\\PhoneStore.csproj",
       "projectName": "PhoneStore",
-      "projectPath": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\PhoneStore.csproj",
-      "packagesPath": "C:\\Users\\M3aty\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\M3aty\\Desktop\\PhoneStore\\PhoneStore\\obj\\",
+      "projectPath": "D:\\Dev\\PhoneStore\\PhoneStore\\PhoneStore.csproj",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "D:\\Dev\\PhoneStore\\PhoneStore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\M3aty\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4153,7 +4153,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -4201,7 +4201,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

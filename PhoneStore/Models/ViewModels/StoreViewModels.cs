@@ -10,8 +10,9 @@ namespace PhoneStore.Models.ViewModels
         public IEnumerable<Category> Categories { get; set; } = new List<Category>();
 
         public int? SelectedCompanyId { get; set; }
-
         public int? SelectedCategoryId { get; set; }
+
+        public string? SearchString { get; set; }
 
         public List<int> WishlistIds { get; set; } = new List<int>();
     }

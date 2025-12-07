@@ -9,181 +9,181 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PhoneStore
 build_property.RootNamespace = PhoneStore
-build_property.ProjectDir = C:\Users\M3aty\Desktop\PhoneStore\PhoneStore\
+build_property.ProjectDir = D:\Dev\PhoneStore\PhoneStore\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\M3aty\Desktop\PhoneStore\PhoneStore
+build_property.MSBuildProjectDirectory = D:\Dev\PhoneStore\PhoneStore
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Account/Login.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminAnnouncements/Create.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminAnnouncements/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Bbm5vdW5jZW1lbnRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminAnnouncements/Delete.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminAnnouncements/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Bbm5vdW5jZW1lbnRzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminAnnouncements/Edit.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminAnnouncements/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Bbm5vdW5jZW1lbnRzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminAnnouncements/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminAnnouncements/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Bbm5vdW5jZW1lbnRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminCategories/Create.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminCategories/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYXRlZ29yaWVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminCategories/Delete.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminCategories/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYXRlZ29yaWVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminCategories/Edit.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminCategories/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYXRlZ29yaWVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminCategories/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminCategories/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYXRlZ29yaWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminCompanies/Create.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminCompanies/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Db21wYW5pZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminCompanies/Delete.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminCompanies/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Db21wYW5pZXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminCompanies/Edit.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminCompanies/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Db21wYW5pZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminCompanies/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminCompanies/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Db21wYW5pZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminLocations/Create.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminLocations/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Mb2NhdGlvbnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminLocations/Delete.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminLocations/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Mb2NhdGlvbnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminLocations/Edit.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminLocations/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Mb2NhdGlvbnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminLocations/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminLocations/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Mb2NhdGlvbnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminOrders/Delete.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminOrders/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5PcmRlcnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminOrders/Details.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminOrders/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5PcmRlcnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminOrders/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminOrders/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5PcmRlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminOrders/PrintInvoice.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminOrders/PrintInvoice.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5PcmRlcnNcUHJpbnRJbnZvaWNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminProducts/Create.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminProducts/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminProducts/Delete.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminProducts/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0c1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminProducts/Edit.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminProducts/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/AdminProducts/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/AdminProducts/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Admin/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Cart/Checkout.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Cart/Checkout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDaGVja291dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Cart/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Cart/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Cart/OrderConfirmation.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Cart/OrderConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxPcmRlckNvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Cart/Wishlist.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Cart/Wishlist.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxXaXNobGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Home/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Order/Details.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Order/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Order/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Order/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Shared/Components/Announcement/Default.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Shared/Components/Announcement/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQW5ub3VuY2VtZW50XERlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Shared/Error.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Shared/_AdminLayout.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Shared/_AdminLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Store/Details.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Store/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Store/Index.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Store/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/_ViewImports.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/_ViewStart.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/M3aty/Desktop/PhoneStore/PhoneStore/Views/Shared/_Layout.cshtml]
+[D:/Dev/PhoneStore/PhoneStore/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fqh37qo6yg
