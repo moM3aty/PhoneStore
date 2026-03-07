@@ -40,7 +40,7 @@
                                 <label asp-for="PhoneNumber" class="form-label fw-bold text-secondary"></label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light border-end-0"><i class="fas fa-phone text-muted"></i></span>
-                                    <input asp-for="PhoneNumber" class="form-control border-start-0 bg-light" placeholder="079xxxxxxx" />
+                                    <input asp-for="PhoneNumber" class="form-control border-start-0 bg-light" placeholder="079xxxxxxx" dir="ltr" style="text-align: right;" />
                                 </div>
                                 <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
                             </div>
@@ -61,6 +61,20 @@
                                 <textarea asp-for="Address" class="form-control bg-light" rows="3" placeholder="اسم الشارع، رقم البناية، الطابق، وأي تفاصيل إضافية..."></textarea>
                                 <span asp-validation-for="Address" class="text-danger small"></span>
                             </div>
+
+                            <!-- التنويه الخاص بالواتساب المضاف هنا -->
+                            <div class="alert mt-4 mb-0 border-0 shadow-sm d-flex align-items-center" style="background-color: #f0fdf4; border-radius: 10px; border-right: 4px solid #198754 !important;">
+                                <i class="fab fa-whatsapp fs-1 text-success ms-3"></i>
+                                <div>
+                                    <h6 class="fw-bold text-success mb-1">تنويه لتسريع التوصيل!</h6>
+                                    <p class="mb-0 text-muted small" style="line-height: 1.6;">
+                                        يمكنك إرسال موقعك (Location) على واتساب للرقم
+                                        <a href="https://wa.me/962792747477" target="_blank" class="text-success fw-bold text-decoration-none mx-1" dir="ltr">079 274 7477</a>
+                                        مع إرفاق <strong>رقم الهاتف</strong> المدخل في هذا الطلب لتسهيل وصول المندوب إليك.
+                                    </p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -125,6 +139,17 @@
                                         <div class="flex-grow-1 ms-3">
                                             <h6 class="mb-0 fw-bold text-dark">@item.Product.Name</h6>
                                             <small class="text-muted">@item.Product.Company?.Name</small>
+                                            <!-- الخيارات (اللون/النوع) إن وجدت -->
+                                            <div class="small text-muted mt-1" style="font-size: 0.75rem;">
+                                                @if (!string.IsNullOrEmpty(item.SelectedColor))
+                                                {
+                                                    <span class="ms-1">@item.SelectedColor</span>
+                                                }
+                                                @if (!string.IsNullOrEmpty(item.SelectedType))
+                                                {
+                                                    <span>(@item.SelectedType)</span>
+                                                }
+                                            </div>
                                         </div>
                                         <div class="text-end">
                                             <span class="fw-bold text-primary">@item.Subtotal.ToString("C", culture)</span>

@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PhoneStore.Models
 {
-
     public class OrderDetail
     {
         public int Id { get; set; }
@@ -24,7 +23,10 @@ namespace PhoneStore.Models
 
         [Required]
         [Column(TypeName = "decimal(18, 2)")]
-        [Display(Name = "سعر الوحدة (وقت الشراء)")]
+        [Display(Name = "سعر الوحدة")]
         public decimal UnitPrice { get; set; }
+
+        public string? SelectedColor { get; set; }
+        public string? SelectedType { get; set; }
     }
 }

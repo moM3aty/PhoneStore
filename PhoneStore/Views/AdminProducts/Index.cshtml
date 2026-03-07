@@ -3,11 +3,15 @@
 @{
     ViewData["Title"] = "إدارة المنتجات";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int currentPage = ViewBag.CurrentPage;
+    int totalPages = ViewBag.TotalPages;
+    string currentFilter = ViewData["CurrentFilter"] as string;
+    int? selectedCompany = ViewData["SelectedCompany"] as int?;
 }
 
 <div class="card shadow-sm">
     <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-3 bg-white py-3">
-        <h5 class="mb-0 text-primary fw-bold">قائمة المنتجات (@Model.Count())</h5>
+        <h5 class="mb-0 text-primary fw-bold">قائمة المنتجات (@ViewBag.TotalItems)</h5>
         <a asp-action="Create" class="btn btn-primary btn-sm">
             <i class="fas fa-plus me-2"></i> إضافة منتج جديد
         </a>
@@ -19,7 +23,7 @@
                 <label class="col-form-label fw-bold">بحث:</label>
             </div>
             <div class="col-md-4">
-                <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="اسم المنتج..." />
+                <input type="text" name="searchString" value="@currentFilter" class="form-control" placeholder="اسم المنتج..." />
             </div>
             <div class="col-md-3">
                 <select name="companyId" asp-items="ViewBag.CompanyId" class="form-select">
@@ -99,4 +103,50 @@
             </table>
         </div>
     </div>
+
+    <!-- التصفح (Pagination) -->
+    @if (totalPages > 1)
+    {
+        <div class="card-footer bg-white py-3">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                        <a class="page-link" asp-action="Index"
+                           asp-route-page="@(currentPage - 1)"
+                           asp-route-searchString="@currentFilter"
+                           asp-route-companyId="@selectedCompany">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+
+                    @for (int i = 1; i <= totalPages; i++)
+                    {
+                        // عرض أول صفحة، آخر صفحة، والحالية وما حولها لتجنب الزحام
+                        if (i == 1 || i == totalPages || (i >= currentPage - 2 && i <= currentPage + 2))
+                        {
+                            <li class="page-item @(i == currentPage ? "active" : "")">
+                                <a class="page-link" asp-action="Index"
+                                   asp-route-page="@i"
+                                   asp-route-searchString="@currentFilter"
+                                   asp-route-companyId="@selectedCompany">@i</a>
+                            </li>
+                        }
+                        else if (i == currentPage - 3 || i == currentPage + 3)
+                        {
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        }
+                    }
+
+                    <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                        <a class="page-link" asp-action="Index"
+                           asp-route-page="@(currentPage + 1)"
+                           asp-route-searchString="@currentFilter"
+                           asp-route-companyId="@selectedCompany">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }
 </div>

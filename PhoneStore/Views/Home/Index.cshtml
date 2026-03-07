@@ -29,20 +29,88 @@
     var topCompanies = finalCompaniesList.Take(4).ToList();
 }
 
-<section id="home" class="hero d-flex flex-column gap-4 justify-content-center">
+<style>
+    /* تنسيقات مطابقة للصورة (تجاوب الموبايل للقسم الرئيسي) */
+    .hero-btns .btn-purple-custom {
+        background-color: #6a3d7d; /* اللون البنفسجي الموجود بالصورة */
+        border-color: #6a3d7d;
+        color: #fff;
+    }
+
+        .hero-btns .btn-purple-custom:hover {
+            background-color: #552f66;
+            border-color: #552f66;
+            color: #fff;
+        }
+
+    @@media (max-width: 768px) {
+        .hero
+
+    {
+        text-align: center !important;
+        padding-top: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem !important; /* تصغير وتوسيط العنوان للموبايل */
+        line-height: 1.4;
+        margin-bottom: 1rem;
+    }
+
+    .hero p {
+        font-size: 0.85rem !important; /* تصغير وتوسيط الوصف */
+        line-height: 1.6;
+        color: #e0e0e0 !important;
+    }
+
+    .hero-btns {
+        justify-content: center !important;
+        flex-direction: row-reverse; /* ترتيب الأزرار كما في الصورة */
+        gap: 10px !important;
+        margin-top: 1.5rem !important;
+    }
+
+        .hero-btns .btn {
+            font-size: 0.9rem !important;
+            padding: 0.5rem 1.25rem !important;
+            width: auto;
+        }
+
+    }
+
+    /* في الشاشات الكبيرة نجعل النص بالمنتصف أيضاً ليتماشى مع روح التصميم */
+    @@media (min-width: 769px) {
+        .hero h1
+
+    {
+        text-align: center;
+    }
+
+    .hero p {
+        text-align: center;
+    }
+
+    .hero-btns {
+        justify-content: center !important;
+    }
+
+    }
+</style>
+
+<section id="home" class="hero d-flex flex-column gap-4 justify-content-center" style="background-color: #212124;">
     <div class="container">
-        <div class="row g-4 align-items-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-6 hero-text">
-                <h1>
+        <div class="row g-4 align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-8 hero-text text-center">
+                <h1 class="text-white fw-bold mb-3">
                     بوابتك إلى أفضل قطع غيار الموبايلات
                 </h1>
-                <p class="">
+                <p class="text-light opacity-75 mx-auto" style="max-width: 600px;">
                     اكتشف قطع غيار عالية الجودة لجميع أنواع الهواتف المحمولة مع شحن سريع وأسعار تنافسية.
                 </p>
 
-                <div class="hero-btns d-flex gap-3 mt-5 justify-content-lg-start">
-                    <a href="#mobileCompany" class="btn btn-danger btn-lg">استكشف الشركات</a>
-                    <a asp-controller="Store" asp-action="Index" class="btn btn-outline-light btn-lg ms-3">تسوق الان</a>
+                <div class="hero-btns d-flex gap-3 mt-4 justify-content-center">
+                    <a href="#mobileCompany" class="btn btn-purple-custom btn-lg rounded-3 shadow-sm">استكشف الشركات</a>
+                    <a asp-controller="Store" asp-action="Index" class="btn btn-purple-custom btn-lg rounded-3 shadow-sm">تسوق الان</a>
                 </div>
             </div>
         </div>
@@ -50,7 +118,7 @@
     <div class="hero-shape"></div>
 </section>
 
-<section class="shop-section py-5">
+<section class="shop-section py-5" id="mobileCompany">
     <div class="container mb-5">
         <h2 class="text-center">استكشف أبرز العلامات التجارية التقنية</h2>
     </div>
@@ -76,7 +144,7 @@
     </div>
 </section>
 
-<section class="py-5 mobile-company" id="mobileCompany">
+<section class="py-5 mobile-company" >
     <div class="container py-5">
         <div class="heading text-center mb-5" data-aos="fade-up" data-aos-delay="100">
             <h2 class="mb-3">شركة الموبايلات</h2>
@@ -125,10 +193,7 @@
     <div class="container py-5">
         <div class="heading text-center mb-5" data-aos="fade-up" data-aos-delay="100">
             <h2 class="mb-3">لماذا تختارنا؟</h2>
-            <p class="text-muted fw-medium">
-                نوفر أفضل قطع غيار الموبايلات والخدمات الموثوقة لجعل عملية الشراء سهلة
-                وموثوقة.
-            </p>
+            <p class="text-muted fw-medium">نوفر أفضل قطع غيار الموبايلات والخدمات الموثوقة لجعل عملية الشراء سهلة وموثوقة.</p>
         </div>
         <div class="row g-4 mt-5">
             <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-delay="100">
@@ -149,9 +214,7 @@
                 <div class="box text-center">
                     <i class="fa-solid fa-headset fa-3x mb-3"></i>
                     <h3>دعم مخصص</h3>
-                    <p class="text-muted fw-medium">
-                        فريقنا يقدم الدعم والإرشاد في كل خطوة من خطوات شراء قطع الغيار.
-                    </p>
+                    <p class="text-muted fw-medium">فريقنا يقدم الدعم والإرشاد في كل خطوة من خطوات شراء قطع الغيار.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-delay="100">
@@ -208,8 +271,7 @@
                             <h3>جميع البضائع مقفولة قبل التركيب لضمان الجودة والأمان.</h3>
                             <p class="text-center text-muted fw-medium">
                                 نحن نقدم دعم فوري لأي استفسار أو تعديل تحتاجه، فريقنا متواجد للرد مباشرة عبر الهاتف
-                                أو
-                                واتساب.
+                                أو واتساب.
                             </p>
                         </div>
                     </div>

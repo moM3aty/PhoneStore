@@ -6,108 +6,209 @@
     bool isInWishlist = ViewBag.InWishlist ?? false;
 }
 
-<section class="py-5 mt-5">
-    <div class="container py-5">
+<style>
+    /* الألوان المخصصة لتطابق الصورة */
+    .text-blue-custom {
+        color: #1a56db !important;
+    }
 
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">الرئيسية</a></li>
-                <li class="breadcrumb-item"><a asp-action="Index">المتجر</a></li>
+    .btn-purple-custom {
+        background-color: #83539b;
+        border-color: #83539b;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+        .btn-purple-custom:hover {
+            background-color: #6a417e;
+            border-color: #6a417e;
+            color: white;
+        }
+
+    .btn-outline-purple-custom {
+        color: #83539b;
+        border-color: #83539b;
+        background-color: transparent;
+        transition: all 0.3s ease;
+    }
+
+        .btn-outline-purple-custom:hover, .btn-outline-purple-custom.active {
+            background-color: #83539b;
+            color: white;
+        }
+
+    .product-image-container {
+        border: 1px solid #eaeaea;
+        border-radius: 12px;
+        padding: 2rem;
+        background-color: #fff;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .features-box {
+        background-color: #fafafa;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: "/";
+        float: left;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        color: #6c757d;
+    }
+</style>
+
+<section class="py-5 mt-5">
+    <div class="container py-4">
+
+        <!-- مسار التصفح (Breadcrumb) -->
+        <nav aria-label="breadcrumb" class="mb-5 d-flex justify-content-start">
+            <ol class="breadcrumb mb-0" style="font-size: 0.95rem;">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" class="text-decoration-none text-muted"> الرئيسية / </a></li>
+                <li class="breadcrumb-item"><a asp-action="Index" class="text-decoration-none text-muted mx-1"> المتجر </a></li>
                 @if (Model.Company != null)
                 {
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-route-companyId="@Model.CompanyId">@Model.Company.Name</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-route-companyId="@Model.CompanyId" class="text-decoration-none text-muted">@Model.Company.Name</a></li>
                 }
-                <!-- تصحيح: استخدام Model.Category بدلاً من النص -->
                 @if (Model.Category != null)
                 {
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-route-categoryId="@Model.CategoryId">@Model.Category.Name</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-route-categoryId="@Model.CategoryId" class="text-decoration-none text-muted">@Model.Category.Name</a></li>
                 }
-                <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+                <li class="breadcrumb-item text-dark" aria-current="page">@Model.Name</li>
             </ol>
         </nav>
 
-        <div class="row g-5 align-items-center">
-            <!-- صورة المنتج -->
-            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
-                <div class="product-details-img border rounded-4 overflow-hidden position-relative bg-white shadow-sm">
+        <div class="row g-5 align-items-start">
+
+            <!-- القسم الأيمن: صورة المنتج -->
+            <div class="col-lg-6">
+                <div class="product-image-container position-relative">
                     @if (Model.DiscountPercentage > 0)
                     {
                         <div class="position-absolute top-0 end-0 m-3 bg-danger text-white px-3 py-1 rounded-pill fw-bold z-2">
                             خصم @Model.DiscountPercentage%
                         </div>
                     }
-
                     <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? "https://placehold.co/600x600/EEE/513061?text=No+Image" : Model.ImageUrl)"
-                         class="img-fluid w-100 object-fit-contain"
+                         class="img-fluid object-fit-contain"
                          style="max-height: 500px;"
                          alt="@Model.Name">
                 </div>
             </div>
 
-            <!-- تفاصيل المنتج -->
-            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
-                <div class="product-details-content ps-lg-4">
-                    <h6 class="text-uppercase text-muted fw-bold mb-2">
-                        <!-- تصحيح الخطأ هنا: استبدال string.IsNullOrEmpty بفحص الـ null وعرض الاسم -->
-                        @(Model.Company?.Name ?? "عام") @(Model.Category != null ? $" / {Model.Category.Name}" : "")
-                    </h6>
-                    <h1 class="fw-bold mb-3">@Model.Name</h1>
+            <!-- القسم الأيسر: تفاصيل المنتج -->
+            <div class="col-lg-6 text-end">
 
-                    <div class="mb-4">
-                        @if (Model.OldPrice.HasValue && Model.OldPrice > Model.Price)
+                <!-- التصنيف -->
+                <h6 class="text-uppercase text-muted fw-bold mb-2 small" style="letter-spacing: 0.5px;">
+                    @(Model.Company?.Name ?? "عام") @(Model.Category != null ? $" / {Model.Category.Name}" : "")
+                </h6>
+
+                <!-- اسم المنتج -->
+                <h1 class="fw-bold mb-3" style="font-size: 2.5rem;">@Model.Name</h1>
+
+                <!-- السعر -->
+                <div class="mb-4">
+                    @if (Model.OldPrice.HasValue && Model.OldPrice > Model.Price)
+                    {
+                        <span class="text-muted text-decoration-line-through fs-5 ms-3">@Model.OldPrice.Value.ToString("C", culture)</span>
+                        <span class="fs-2 fw-bold text-primary">@Model.Price.ToString("C", culture)</span>
+                    }
+                    else
+                    {
+                        <span class="fs-2 fw-bold text-primary">@Model.Price.ToString("C", culture)</span>
+                    }
+                </div>
+
+                <!-- الوصف -->
+                <p class="text-muted mb-4" style="line-height: 1.9; font-size: 1.05rem;">
+                    @if (!string.IsNullOrEmpty(Model.Description))
+                    {
+                        @Model.Description
+                    }
+                    else
+                    {
+                        <span>متوفر للجهاز مدخل خط ، عدسة كاميرا ، جدلة سماعة ، جدلة بصمة ، جدلة وسط ، جدلة شحن ، جدلة باور ، كاميرا ، جرس ، سماعة ، بطارية ، شحن ، باك ، فريم ، شاشة</span>
+                    }
+                </p>
+
+                <!-- خيارات المنتج (تظهر فقط إذا كان للمنتج ألوان أو أنواع) -->
+                @if ((Model.Colors != null && Model.Colors.Any()) || (Model.Types != null && Model.Types.Any()))
+                {
+                    <div class="row g-3 mb-4 text-end" dir="rtl">
+                        @if (Model.Colors != null && Model.Colors.Any())
                         {
-                            <span class="text-danger fs-2 fw-bold me-2">@Model.Price د.أ</span>
-                            <span class="fs-2 fw-bold me-2"> </span>
-                            <span class="text-muted text-decoration-line-through fs-5 mx-3"> @Model.OldPrice.Value </span>
+                            <div class="col-md-6">
+                                <label class="text-muted small mb-2 d-block">اللون المطلوب:</label>
+                                <select id="selectedColor" class="form-select form-select-sm border-secondary text-end" style="direction: rtl;">
+                                    @foreach (var color in Model.Colors)
+                                    {
+                                        <option value="@color.ColorName">@color.ColorName</option>
+                                    }
+                                </select>
+                            </div>
+                        }
+
+                        @if (Model.Types != null && Model.Types.Any())
+                        {
+                            <div class="col-md-6">
+                                <label class="text-muted small mb-2 d-block">النوع / الموديل:</label>
+                                <select id="selectedType" class="form-select form-select-sm border-secondary text-end" style="direction: rtl;">
+                                    @foreach (var type in Model.Types)
+                                    {
+                                        <option value="@type.TypeName">@type.TypeName</option>
+                                    }
+                                </select>
+                            </div>
+                        }
+                    </div>
+                }
+
+                <!-- أزرار الإضافة للسلة والمفضلة -->
+                <div class="d-flex gap-3 mb-4 flex-row-reverse">
+                    <!-- زر المفضلة (مربع) -->
+                    <button class="btn @(isInWishlist ? "btn-purple-custom active" : "btn-outline-purple-custom") btn-toggle-wishlist rounded-2 d-flex align-items-center justify-content-center"
+                            data-id="@Model.Id"
+                            style="width: 55px; height: 55px;"
+                            title="@(isInWishlist ? "إزالة من المفضلة" : "إضافة للمفضلة")">
+                        @if (isInWishlist)
+                        {
+                            <i class="fa-solid fa-heart fs-4"></i>
                         }
                         else
                         {
-                            <span class="fs-2 fw-bold text-primary">@Model.Price د.أ</span>
+                            <i class="fa-regular fa-heart fs-4"></i>
                         }
+                    </button>
+
+                    <!-- زر السلة (مستطيل عريض) -->
+                    <button class="btn btn-purple-custom flex-grow-1 rounded-2 fw-bold fs-5 btn-add-to-cart-detailed d-flex align-items-center justify-content-center"
+                            data-id="@Model.Id" style="height: 55px;">
+                        <i class="fas fa-cart-plus"></i>
+                        <span class="me-2">أضف إلى السلة</span>
+                    </button>
+                </div>
+
+                <!-- صندوق المميزات -->
+                <div class="features-box p-4 mt-2 text-end">
+                    <div class="d-flex align-items-center justify-content-start mb-3">
+                        <i class="fas fa-shield-alt fe-5 text-blue-custom"></i>
+                        <span class="fw-bold text-dark me-3">ضمان الجودة:</span>
+                        <span class="text-muted me-2">منتج أصلي مفحوص ومضمون.</span>
                     </div>
-
-                    <p class="lead text-muted mb-4">
-                        @if (!string.IsNullOrEmpty(Model.Description))
-                        {
-                            @Model.Description
-                        }
-                        else
-                        {
-                            <span>لا يوجد وصف متاح لهذا المنتج حالياً. قطعة غيار أصلية ومضمونة.</span>
-                        }
-                    </p>
-
-                    <div class="d-flex gap-3 mt-5">
-                        <button class="btn btn-success btn-lg px-5 flex-grow-1 btn-add-to-cart" data-id="@Model.Id">
-                            <i class="fas fa-cart-plus me-2"></i> أضف إلى السلة
-                        </button>
-
-                        <button class="btn btn-outline-danger btn-lg px-4 btn-toggle-wishlist" data-id="@Model.Id" title="@(isInWishlist ? "إزالة من المفضلة" : "إضافة للمفضلة")">
-                            @if (isInWishlist)
-                            {
-                                <i class="fa-solid fa-heart text-danger" style="color:red;"></i>
-                            }
-                            else
-                            {
-                                <i class="fa-regular fa-heart"></i>
-                            }
-                        </button>
-                    </div>
-
-                    <div class="mt-4 p-3 bg-light rounded-3 border">
-                        <div class="d-flex align-items-center gap-3 mb-2">
-                            <i class="fas fa-shield-alt fa-lg text-primary"></i>
-                            <span class="fw-bold">ضمان الجودة:</span>
-                            <span class="text-muted">منتج أصلي مفحوص ومضمون.</span>
-                        </div>
-                        <div class="d-flex align-items-center gap-3">
-                            <i class="fas fa-truck fa-lg text-primary"></i>
-                            <span class="fw-bold">توصيل سريع:</span>
-                            <span class="text-muted">توصيل داخل عمان خلال ساعة ونصف.</span>
-                        </div>
+                    <div class="d-flex align-items-center justify-content-start">
+                        <i class="fas fa-truck fe-5 text-blue-custom"></i>
+                        <span class="fw-bold text-dark me-3">توصيل سريع:</span>
+                        <span class="text-muted me-2">توصيل داخل عمان خلال ساعة ونصف.</span>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
-</section>  
+</section>

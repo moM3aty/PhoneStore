@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MOHAMED ABO-ELM3ATY\\Downloads\\موبايلات\\PhoneStore\\PhoneStore\\PhoneStore.csproj": {}
+    "C:\\Users\\MOHAMED ABO-ELM3ATY\\Downloads\\Projects\\PhoneStore\\PhoneStore\\PhoneStore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MOHAMED ABO-ELM3ATY\\Downloads\\موبايلات\\PhoneStore\\PhoneStore\\PhoneStore.csproj": {
+    "C:\\Users\\MOHAMED ABO-ELM3ATY\\Downloads\\Projects\\PhoneStore\\PhoneStore\\PhoneStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MOHAMED ABO-ELM3ATY\\Downloads\\موبايلات\\PhoneStore\\PhoneStore\\PhoneStore.csproj",
+        "projectUniqueName": "C:\\Users\\MOHAMED ABO-ELM3ATY\\Downloads\\Projects\\PhoneStore\\PhoneStore\\PhoneStore.csproj",
         "projectName": "PhoneStore",
-        "projectPath": "C:\\Users\\MOHAMED ABO-ELM3ATY\\Downloads\\موبايلات\\PhoneStore\\PhoneStore\\PhoneStore.csproj",
+        "projectPath": "C:\\Users\\MOHAMED ABO-ELM3ATY\\Downloads\\Projects\\PhoneStore\\PhoneStore\\PhoneStore.csproj",
         "packagesPath": "C:\\Users\\MOHAMED ABO-ELM3ATY\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MOHAMED ABO-ELM3ATY\\Downloads\\موبايلات\\PhoneStore\\PhoneStore\\obj\\",
+        "outputPath": "C:\\Users\\MOHAMED ABO-ELM3ATY\\Downloads\\Projects\\PhoneStore\\PhoneStore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

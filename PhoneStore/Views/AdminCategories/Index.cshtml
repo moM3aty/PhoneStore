@@ -36,6 +36,7 @@
                 <thead class="bg-light">
                     <tr>
                         <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>يتبع لقسم (القسم الأب)</th>
                         <th>عدد المنتجات</th>
                         <th style="width: 150px;">إجراءات</th>
                     </tr>
@@ -46,7 +47,17 @@
                         <tr>
                             <td class="fw-bold">@Html.DisplayFor(modelItem => item.Name)</td>
                             <td>
-                                <span class="badge bg-secondary">@item.Products.Count منتج</span>
+                                @if (item.ParentCategory != null)
+                                {
+                                    <span class="badge bg-info text-dark">@item.ParentCategory.Name</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">قسم رئيسي</span>
+                                }
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-dark border">@item.Products.Count منتج</span>
                             </td>
                             <td>
                                 <div class="btn-group" role="group">

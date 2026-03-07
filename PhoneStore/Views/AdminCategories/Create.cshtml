@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "إضافة قسم جديد";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    var adminKey = Context.Request.Query["key"];
 }
 
 <div class="row">
@@ -13,20 +12,29 @@
                 <h5 class="mb-0">إضافة قسم جديد</h5>
             </div>
             <div class="card-body">
-                <form asp-action="Create" asp-route-key="@adminKey">
+                <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="mb-3">
                         <label asp-for="Name" class="form-label"></label>
-                        <input asp-for="Name" class="form-control" placeholder="مثال: شاشات، بطاريات..." />
+                        <input asp-for="Name" class="form-control" placeholder="مثال: شاشات، بطاريات، شاشات أيفون..." />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
 
-                    <div class="mt-4">
+                    <div class="mb-4">
+                        <label asp-for="ParentCategoryId" class="form-label"></label>
+                        <select asp-for="ParentCategoryId" class="form-select" asp-items="ViewBag.ParentCategories">
+                            <option value="">-- قسم رئيسي (بدون أب) --</option>
+                        </select>
+                        <span asp-validation-for="ParentCategoryId" class="text-danger"></span>
+                        <small class="text-muted d-block mt-1">اختر قسماً من القائمة إذا كنت تريد أن يكون هذا القسم فرعياً داخله.</small>
+                    </div>
+
+                    <div class="mt-4 border-top pt-3">
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save me-2"></i> حفظ
                         </button>
-                        <a asp-action="Index" asp-route-key="@adminKey" class="btn btn-outline-secondary ms-2">
+                        <a asp-action="Index" class="btn btn-outline-secondary ms-2">
                             <i class="fas fa-times me-2"></i> إلغاء
                         </a>
                     </div>

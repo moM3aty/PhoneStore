@@ -1,0 +1,11 @@
+﻿@model PhoneStore.Models.Announcement
+
+@if (Model != null)
+{
+    <div class="announcement-bar text-center py-2 text-white position-relative" style="background-color: #513061; font-size: 0.9rem;">
+        <div class="container">
+            <span class="fw-bold"><i class="fas fa-bullhorn me-2"></i> @Model.Message</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white position-absolute top-50 end-0 translate-middle-y me-3 small" onclick="this.parentElement.style.display='none'" aria-label="Close"></button>
+    </div>
+}

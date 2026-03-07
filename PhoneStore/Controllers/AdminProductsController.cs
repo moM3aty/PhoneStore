@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 
 namespace PhoneStore.Controllers
 {
@@ -25,28 +26,49 @@ namespace PhoneStore.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task<IActionResult> Index(string searchString, int? companyId)
+        // تم إضافة معامل page وإعدادات التصفح
+        public async Task<IActionResult> Index(string searchString, int? companyId, int page = 1)
         {
-            var products = _context.Products
+            int pageSize = 30; // عدد المنتجات في كل صفحة
+
+            var productsQuery = _context.Products
                                    .Include(p => p.Company)
                                    .Include(p => p.Category)
                                    .AsQueryable();
 
+            // الفلترة
             if (!string.IsNullOrEmpty(searchString))
             {
-                products = products.Where(s => s.Name.Contains(searchString));
+                productsQuery = productsQuery.Where(s => s.Name.Contains(searchString));
             }
 
             if (companyId.HasValue)
             {
-                products = products.Where(p => p.CompanyId == companyId);
+                productsQuery = productsQuery.Where(p => p.CompanyId == companyId);
             }
 
+            // --- حسابات التصفح (Pagination) ---
+            int totalItems = await productsQuery.CountAsync();
+            int totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+            // التأكد من أن الصفحة الحالية ضمن النطاق
+            page = Math.Max(1, Math.Min(page, totalPages > 0 ? totalPages : 1));
+
+            var products = await productsQuery
+                                .OrderByDescending(p => p.Id)
+                                .Skip((page - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToListAsync();
+
+            // تمرير البيانات للواجهة
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", companyId);
             ViewData["CurrentFilter"] = searchString;
+            ViewData["SelectedCompany"] = companyId;
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.TotalItems = totalItems;
 
-            // الترتيب التنازلي (الأحدث أولاً)
-            return View(await products.OrderByDescending(p => p.Id).ToListAsync());
+            return View(products);
         }
 
         public async Task<IActionResult> Create()
@@ -54,7 +76,7 @@ namespace PhoneStore.Controllers
             var viewModel = new ProductViewModel
             {
                 CompanyList = await GetCompanySelectListAsync(),
-                CategoryList = await GetCategorySelectListAsync() // تعبئة قائمة الأقسام
+                CategoryList = await GetCategorySelectListAsync()
             };
             return View(viewModel);
         }
@@ -70,12 +92,29 @@ namespace PhoneStore.Controllers
                     viewModel.Product.ImageUrl = await SaveImageAsync(viewModel.ImageFile);
                 }
 
+                if (!string.IsNullOrEmpty(viewModel.ColorsInput))
+                {
+                    var colors = viewModel.ColorsInput.Split(new[] { ',', '،' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var color in colors)
+                    {
+                        viewModel.Product.Colors.Add(new ProductColor { ColorName = color.Trim() });
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(viewModel.TypesInput))
+                {
+                    var types = viewModel.TypesInput.Split(new[] { ',', '،' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var type in types)
+                    {
+                        viewModel.Product.Types.Add(new ProductType { TypeName = type.Trim() });
+                    }
+                }
+
                 _context.Add(viewModel.Product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
-            // إعادة تعبئة القوائم في حالة الخطأ
             viewModel.CompanyList = await GetCompanySelectListAsync(viewModel.Product.CompanyId);
             viewModel.CategoryList = await GetCategorySelectListAsync(viewModel.Product.CategoryId);
             return View(viewModel);
@@ -85,14 +124,20 @@ namespace PhoneStore.Controllers
         {
             if (id == null) return NotFound();
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products
+                                        .Include(p => p.Colors)
+                                        .Include(p => p.Types)
+                                        .FirstOrDefaultAsync(p => p.Id == id);
+
             if (product == null) return NotFound();
 
             var viewModel = new ProductViewModel
             {
                 Product = product,
                 CompanyList = await GetCompanySelectListAsync(product.CompanyId),
-                CategoryList = await GetCategorySelectListAsync(product.CategoryId) // تعبئة الأقسام
+                CategoryList = await GetCategorySelectListAsync(product.CategoryId),
+                ColorsInput = string.Join(", ", product.Colors.Select(c => c.ColorName)),
+                TypesInput = string.Join(", ", product.Types.Select(t => t.TypeName))
             };
 
             return View(viewModel);
@@ -108,20 +153,47 @@ namespace PhoneStore.Controllers
             {
                 try
                 {
-                    var productFromDb = await _context.Products.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+                    var productFromDb = await _context.Products
+                                                      .Include(p => p.Colors)
+                                                      .Include(p => p.Types)
+                                                      .FirstOrDefaultAsync(p => p.Id == id);
+
                     if (productFromDb == null) return NotFound();
+
+                    productFromDb.Name = viewModel.Product.Name;
+                    productFromDb.Description = viewModel.Product.Description;
+                    productFromDb.Price = viewModel.Product.Price;
+                    productFromDb.OldPrice = viewModel.Product.OldPrice;
+                    productFromDb.CategoryId = viewModel.Product.CategoryId;
+                    productFromDb.CompanyId = viewModel.Product.CompanyId;
 
                     if (viewModel.ImageFile != null)
                     {
                         DeleteImage(productFromDb.ImageUrl);
-                        viewModel.Product.ImageUrl = await SaveImageAsync(viewModel.ImageFile);
-                    }
-                    else
-                    {
-                        viewModel.Product.ImageUrl = productFromDb.ImageUrl;
+                        productFromDb.ImageUrl = await SaveImageAsync(viewModel.ImageFile);
                     }
 
-                    _context.Update(viewModel.Product);
+                    productFromDb.Colors.Clear();
+                    if (!string.IsNullOrEmpty(viewModel.ColorsInput))
+                    {
+                        var colors = viewModel.ColorsInput.Split(new[] { ',', '،' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var color in colors)
+                        {
+                            productFromDb.Colors.Add(new ProductColor { ColorName = color.Trim() });
+                        }
+                    }
+
+                    productFromDb.Types.Clear();
+                    if (!string.IsNullOrEmpty(viewModel.TypesInput))
+                    {
+                        var types = viewModel.TypesInput.Split(new[] { ',', '،' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var type in types)
+                        {
+                            productFromDb.Types.Add(new ProductType { TypeName = type.Trim() });
+                        }
+                    }
+
+                    _context.Update(productFromDb);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -164,64 +236,36 @@ namespace PhoneStore.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
         private async Task<string> SaveImageAsync(IFormFile imageFile)
         {
             string wwwRootPath = _webHostEnvironment.WebRootPath;
             string productsPath = Path.Combine(wwwRootPath, "images", "products");
-
-            if (!Directory.Exists(productsPath))
-            {
-                Directory.CreateDirectory(productsPath);
-            }
-
+            if (!Directory.Exists(productsPath)) Directory.CreateDirectory(productsPath);
             string fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
             string filePath = Path.Combine(productsPath, fileName);
-
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                await imageFile.CopyToAsync(fileStream);
-            }
-
+            using (var fileStream = new FileStream(filePath, FileMode.Create)) await imageFile.CopyToAsync(fileStream);
             return "/images/products/" + fileName;
         }
 
         private void DeleteImage(string? imageUrl)
         {
             if (string.IsNullOrEmpty(imageUrl)) return;
-
             string wwwRootPath = _webHostEnvironment.WebRootPath;
             string imagePath = Path.Combine(wwwRootPath, imageUrl.TrimStart('/'));
-
-            if (System.IO.File.Exists(imagePath))
-            {
-                System.IO.File.Delete(imagePath);
-            }
+            if (System.IO.File.Exists(imagePath)) System.IO.File.Delete(imagePath);
         }
 
         private async Task<IEnumerable<SelectListItem>> GetCompanySelectListAsync(int? selectedId = null)
         {
-            return await _context.Companies
-               .OrderBy(c => c.Name)
-               .Select(c => new SelectListItem
-               {
-                   Value = c.Id.ToString(),
-                   Text = c.Name,
-                   Selected = selectedId.HasValue && c.Id == selectedId.Value
-               })
+            return await _context.Companies.OrderBy(c => c.Name)
+               .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name, Selected = selectedId.HasValue && c.Id == selectedId.Value })
                .ToListAsync();
         }
 
         private async Task<IEnumerable<SelectListItem>> GetCategorySelectListAsync(int? selectedId = null)
         {
-            return await _context.Categories
-               .OrderBy(c => c.Name)
-               .Select(c => new SelectListItem
-               {
-                   Value = c.Id.ToString(),
-                   Text = c.Name,
-                   Selected = selectedId.HasValue && c.Id == selectedId.Value
-               })
+            return await _context.Categories.OrderBy(c => c.Name)
+               .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name, Selected = selectedId.HasValue && c.Id == selectedId.Value })
                .ToListAsync();
         }
     }

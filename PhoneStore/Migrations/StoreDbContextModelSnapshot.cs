@@ -22,6 +22,29 @@ namespace PhoneStore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("PhoneStore.Models.Announcement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Announcements");
+                });
+
             modelBuilder.Entity("PhoneStore.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -34,7 +57,12 @@ namespace PhoneStore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ParentCategoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ParentCategoryId");
 
                     b.ToTable("Categories");
                 });
@@ -138,6 +166,12 @@ namespace PhoneStore.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<string>("SelectedColor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SelectedType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(18, 2)");
 
@@ -175,10 +209,10 @@ namespace PhoneStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("OldPrice")
-                        .HasColumnType("decimal(18, 0)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 0)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 
@@ -187,6 +221,59 @@ namespace PhoneStore.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("PhoneStore.Models.ProductColor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ColorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductColors");
+                });
+
+            modelBuilder.Entity("PhoneStore.Models.ProductType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductTypes");
+                });
+
+            modelBuilder.Entity("PhoneStore.Models.Category", b =>
+                {
+                    b.HasOne("PhoneStore.Models.Category", "ParentCategory")
+                        .WithMany("SubCategories")
+                        .HasForeignKey("ParentCategoryId");
+
+                    b.Navigation("ParentCategory");
                 });
 
             modelBuilder.Entity("PhoneStore.Models.Order", b =>
@@ -238,9 +325,33 @@ namespace PhoneStore.Migrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("PhoneStore.Models.ProductColor", b =>
+                {
+                    b.HasOne("PhoneStore.Models.Product", "Product")
+                        .WithMany("Colors")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("PhoneStore.Models.ProductType", b =>
+                {
+                    b.HasOne("PhoneStore.Models.Product", "Product")
+                        .WithMany("Types")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("PhoneStore.Models.Category", b =>
                 {
                     b.Navigation("Products");
+
+                    b.Navigation("SubCategories");
                 });
 
             modelBuilder.Entity("PhoneStore.Models.Company", b =>
@@ -251,6 +362,13 @@ namespace PhoneStore.Migrations
             modelBuilder.Entity("PhoneStore.Models.Order", b =>
                 {
                     b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("PhoneStore.Models.Product", b =>
+                {
+                    b.Navigation("Colors");
+
+                    b.Navigation("Types");
                 });
 #pragma warning restore 612, 618
         }

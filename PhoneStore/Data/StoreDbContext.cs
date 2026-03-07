@@ -11,9 +11,12 @@ namespace PhoneStore.Data
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<Category> Categories { get; set; } // تمت إضافة جدول الأقسام
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<DeliveryLocation> DeliveryLocations { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<ProductColor> ProductColors { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
     }
 }

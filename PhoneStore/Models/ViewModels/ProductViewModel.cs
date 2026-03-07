@@ -13,7 +13,13 @@ namespace PhoneStore.Models.ViewModels
         public IFormFile? ImageFile { get; set; }
 
         public IEnumerable<SelectListItem> CompanyList { get; set; } = new List<SelectListItem>();
-
         public IEnumerable<SelectListItem> CategoryList { get; set; } = new List<SelectListItem>();
+
+
+        [Display(Name = "الألوان المتاحة (افصل بينها بفاصلة ،)")]
+        public string? ColorsInput { get; set; }
+
+        [Display(Name = "الأنواع/الموديلات المتاحة (افصل بينها بفاصلة ،)")]
+        public string? TypesInput { get; set; } 
     }
 }

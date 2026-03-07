@@ -6,6 +6,10 @@ namespace PhoneStore.Models.ViewModels
     {
         public Product Product { get; set; }
         public int Quantity { get; set; }
+
+        public string? SelectedColor { get; set; }
+        public string? SelectedType { get; set; }
+
         public decimal Subtotal => Product.Price * Quantity;
     }
 

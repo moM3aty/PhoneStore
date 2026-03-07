@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "حذف القسم";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    var adminKey = Context.Request.Query["key"];
 }
 
 <div class="row">
@@ -13,23 +12,36 @@
                 <h5 class="mb-0">تأكيد الحذف</h5>
             </div>
             <div class="card-body">
-                <h3 class="text-danger">هل أنت متأكد أنك تريد حذف هذا القسم؟</h3>
-                <p>سيتم حذف القسم: <strong>@Model.Name</strong></p>
-
-                @if (Model.Products.Any())
+                @if (TempData["ErrorMessage"] != null)
                 {
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        <strong>تنبيه:</strong> هذا القسم يحتوي على @Model.Products.Count منتجات. لا يمكن حذفه حتى يتم نقل المنتجات لقسم آخر أو حذفها.
+                    <div class="alert alert-danger mb-3">
+                        <i class="fas fa-exclamation-circle me-2"></i> @TempData["ErrorMessage"]
                     </div>
                 }
 
-                <form asp-action="Delete" asp-route-key="@adminKey">
+                <h3 class="text-danger">هل أنت متأكد أنك تريد حذف هذا القسم؟</h3>
+                <p>سيتم حذف القسم: <strong>@Model.Name</strong></p>
+
+                @if (Model.ParentCategory != null)
+                {
+                    <p class="text-muted">يتبع للقسم الرئيسي: @Model.ParentCategory.Name</p>
+                }
+
+                @if (Model.Products.Any() || (Model.SubCategories != null && Model.SubCategories.Any()))
+                {
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>تنبيه:</strong>
+                        هذا القسم مرتبط بـ @Model.Products.Count منتج، ولديه @(Model.SubCategories?.Count ?? 0) أقسام فرعية. يجب نقلهما أو حذفهما أولاً.
+                    </div>
+                }
+
+                <form asp-action="Delete">
                     <input type="hidden" asp-for="Id" />
-                    <button type="submit" class="btn btn-danger" @(Model.Products.Any() ? "disabled" : "")>
+                    <button type="submit" class="btn btn-danger" @(Model.Products.Any() || (Model.SubCategories != null && Model.SubCategories.Any()) ? "disabled" : "")>
                         <i class="fas fa-trash-alt me-2"></i> نعم، احذف
                     </button>
-                    <a asp-action="Index" asp-route-key="@adminKey" class="btn btn-outline-secondary ms-2">
+                    <a asp-action="Index" class="btn btn-outline-secondary ms-2">
                         <i class="fas fa-times me-2"></i> إلغاء
                     </a>
                 </form>

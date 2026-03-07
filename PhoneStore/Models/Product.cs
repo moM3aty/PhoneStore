@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PhoneStore.Models
@@ -15,11 +16,11 @@ namespace PhoneStore.Models
         public string? Description { get; set; }
 
         [Required(ErrorMessage = "السعر مطلوب")]
-        [Column(TypeName = "decimal(18, 0)")]
+        [Column(TypeName = "decimal(18, 2)")]
         [Display(Name = "السعر الحالي")]
         public decimal Price { get; set; }
 
-        [Column(TypeName = "decimal(18, 0)")]
+        [Column(TypeName = "decimal(18, 2)")]
         [Display(Name = "السعر القديم")]
         public decimal? OldPrice { get; set; }
 
@@ -38,6 +39,9 @@ namespace PhoneStore.Models
 
         [ForeignKey("CompanyId")]
         public virtual Company? Company { get; set; }
+
+        public virtual ICollection<ProductColor> Colors { get; set; } = new List<ProductColor>();
+        public virtual ICollection<ProductType> Types { get; set; } = new List<ProductType>();
 
         [NotMapped]
         public int DiscountPercentage

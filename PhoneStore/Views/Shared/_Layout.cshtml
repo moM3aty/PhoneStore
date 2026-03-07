@@ -45,22 +45,99 @@
             line-height: 1;
             border: 2px solid #fff;
         }
+
+        /* ستايل الفوتر */
+        .footer-professional {
+            background-color: #212529;
+            color: #adb5bd;
+            padding-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+            .footer-professional h5 {
+                color: #fff;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                position: relative;
+                padding-bottom: 10px;
+            }
+
+                .footer-professional h5::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 50px;
+                    height: 2px;
+                    background-color: #513061;
+                }
+
+            .footer-professional a {
+                color: #adb5bd;
+                text-decoration: none;
+                transition: all 0.3s;
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+                .footer-professional a:hover {
+                    color: #fff;
+                    transform: translateX(-5px);
+                }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            margin-left: 10px;
+            color: #fff;
+        }
+
+            .social-links a:hover {
+                background: #513061;
+                transform: translateY(-3px);
+            }
+
+        .footer-bottom {
+            background-color: #1a1e21;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
     </style>
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body>
+    <!-- استدعاء شريط الإعلانات -->
+    @await Component.InvokeAsync("Announcement")
+
     @Html.AntiForgeryToken()
 
-    <header id="header" class="header fixed-top">
+    <header id="header" class="header sticky-top bg-white shadow-sm">
         <nav class="navbar navbar-expand-lg px-3">
-            <div class="container-fluid container-lg">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+            <div class="container-fluid container-lg align-items-center p-2">
+                <a class="navbar-brand m-0" asp-controller="Home" asp-action="Index">
                     <span class="brand-text-accent">اشرف الخوالدة</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <i class="fa-solid fa-bars"></i>
+
+                <!-- مربع البحث الذي طلبته (تمت إضافته هنا) -->
+                <form class="d-flex flex-grow-1 mx-2 mx-md-4" asp-controller="Store" asp-action="Index" method="get" style="max-width: 450px;">
+                    <div class="input-group input-group-sm">
+                        <input type="search" name="searchString" class="form-control shadow-none border-secondary-subtle" style="border-radius:0px 5px 5px 0" placeholder="ابحث عن منتج...">
+                        <button class="btn text-white px-2 px-md-3" style="background-color: #513061;border-radius:5px 0 0 5px " type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <button class="navbar-toggler border-0 px-1 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="fa-solid fa-bars fs-4"></i>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto d-flex gap-3 gap-lg-2 mt-3 mt-lg-0 py-3">
                         <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="home">الرئيسية</a></li>
@@ -72,7 +149,6 @@
                     <div class="px-lg-4">
                         <div class="icon-wrapper d-flex gap-4 py-3 py-lg-0 justify-content-center justify-content-lg-start">
                             @{
-                                // استخدام PhoneStore.Models.CartItem بدلاً من PhoneStore.Controllers.CartItem
                                 var cart = HttpContextAccessor.HttpContext.Session.GetObject<List<PhoneStore.Models.CartItem>>("_Cart") ?? new List<PhoneStore.Models.CartItem>();
                                 var cartCount = cart.Sum(c => c.Quantity);
 
@@ -106,7 +182,7 @@
         </nav>
     </header>
 
-    <main role="main">
+    <main role="main" style="min-height: 60vh;">
         @RenderBody()
     </main>
 
@@ -114,13 +190,99 @@
         <div id="toast-container"></div>
     </div>
 
-    <footer class="py-3 text-center bg-dark text-white">
+    <!-- أيقونة الواتساب العائمة -->
+    <a href="https://wa.me/962792747477" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+            .whatsapp-float:hover {
+                background-color: #20b858;
+                color: white;
+                transform: scale(1.1);
+            }
+        /* إخفاء الأيقونة عند الطباعة */
+        @@media print {
+            .whatsapp-float
+
+        {
+            display: none !important;
+        }
+
+        }
+    </style>
+
+    <!-- الفوتر الاحترافي الجديد -->
+    <footer class="footer-professional">
         <div class="container">
-            <div>
-                <p>اشراف الخوالده لقطع غيار الموبايلات</p>
+            <div class="row gy-4">
+                <!-- العمود الأول: اللوجو ونبذة -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-4">
+                        <!-- مكان اللوجو -->
+                        <h5 class="text-white ">أشرف الخوالدة</h5>
+                    </div>
+                    <p class="mb-4">
+                        وجهتك الأولى لقطع غيار الموبايلات الأصلية. نضمن لك الجودة، السرعة في التوصيل، وأفضل الأسعار في السوق.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/962792747477" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- العمود الثاني: روابط سريعة -->
+                <div class="col-lg-2 col-md-6">
+                    <h5>روابط سريعة</h5>
+                    <a asp-controller="Home" asp-action="Index">الرئيسية</a>
+                    <a asp-controller="Store" asp-action="Index">المتجر</a>
+                    <a asp-controller="Cart" asp-action="Index">سلة التسوق</a>
+                    <a asp-controller="Order" asp-action="Index">طلباتي</a>
+                </div>
+
+                <!-- العمود الثالث: معلومات -->
+                <div class="col-lg-2 col-md-6">
+                    <h5>معلومات</h5>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="about">من نحن</a>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="contact">اتصل بنا</a>
+                    <a href="#">سياسة الخصوصية</a>
+                    <a href="#">شروط الاستخدام</a>
+                </div>
+
+                <!-- العمود الرابع: تواصل معنا -->
+                <div class="col-lg-4 col-md-6">
+                    <h5>تواصل معنا</h5>
+                    <p><i class="fas fa-map-marker-alt me-2 text-white"></i> الأردن، عمان، شارع الجاردنز</p>
+                    <p><i class="fas fa-phone me-2 text-white"></i> <a href="tel:0792747477" class="d-inline text-white-50" dir="ltr">+962 79 274 7477</a></p>
+                    <p><i class="fas fa-envelope me-2 text-white"></i> info@ashrafstore.com</p>
+                </div>
             </div>
-            <div>
-                &copy; جميع الحقوق محفوظه 2025
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container text-center">
+                <p class="mb-0">&copy; @DateTime.Now.Year جميع الحقوق محفوظة | <strong>أشرف الخوالدة</strong></p>
             </div>
         </div>
     </footer>
